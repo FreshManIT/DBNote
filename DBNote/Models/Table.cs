@@ -23,6 +23,12 @@ namespace DBNote.Models
             this._mataTypeName = "table";
         }
 
+        public Table(int objectId, string id, string displayName, string name, string comment)
+            : base(objectId, id, displayName, name, comment)
+        {
+            this._mataTypeName = "table";
+        }
+
         public Columns PrimaryKeys
         {
             get { return this._primaryKeys; }

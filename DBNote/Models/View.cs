@@ -8,12 +8,18 @@
         }
 
         public View(string id, string displayName, string name)
-            : this(id, displayName, name,string.Empty)
+            : this(id, displayName, name, string.Empty)
         {
         }
 
         public View(string id, string displayName, string name, string comment)
             : base(id, displayName, name, comment)
+        {
+            _mataTypeName = "view";
+        }
+
+        public View(int objectId, string id, string displayName, string name, string comment)
+           : base(objectId, id, displayName, name, comment)
         {
             _mataTypeName = "view";
         }

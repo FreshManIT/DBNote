@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "ShowTableInfo";
+    Layout = null;
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="../../Css/default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../js/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../../js/themes/icon.css" />
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.easyui.min.1.2.2.js"></script>
+</head>
+<body>
+    <div id="tb">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:alert('Add')">Add</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="javascript:alert('Cut')">Cut</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:alert('Save')">Save</a>
+    </div>
+    <table id="tt" class="easyui-datagrid" style="min-width:850px;"
+           url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@(ViewBag.tableName)&type=@(ViewBag.type)"
+           title="DataGrid with Toolbar" iconCls="icon-save"
+           toolbar="#tb">
+        <thead>
+            <tr>
+                <th field="Name" width="150">字段名称</th>
+                <th field="DataType" width="80">数据类型</th>
+                <th field="DefaultValue" width="80">默认值</th>
+                <th field="DisplayName" width="150">展示名称</th>
+                <th field="HasDefault" width="150">是否有默认值</th>
+                <th field="IsAutoIncremented" width="100">是否自动增长</th>
+                <th field="IsNullable" width="100">是否可空</th>
+                <th field="Length" width="50">长度</th>
+                <th field="Comment" min-width="50">备注</th>
+            </tr>
+        </thead>
+    </table>
+
+    <script>
+        function getSelected() {
+            var row = $('#tt').datagrid('getSelected');
+            if (row) {
+                alert('Item ID:' + row.itemid + "\nPrice:" + row.listprice);
+            }
+        }
+
+        function getSelections() {
+            var ids = [];
+            var rows = $('#tt').datagrid('getSelections');
+            for (var i = 0; i < rows.length; i++) {
+                ids.push(rows[i].itemid);
+            }
+            alert(ids.join('\n'));
+        }
+    </script>
+</body>
+</html>

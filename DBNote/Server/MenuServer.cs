@@ -8,17 +8,10 @@
 //用    途：记录类的用途
 //======================================================================
 #endregion
-using System;
+
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Linq;
-using System.Reflection;
-using System.Web;
-using DBNote.DataBase;
-using DBNote.IDataBase;
 using DBNote.Models;
-using FreshCommonUtility.Configure;
 
 namespace DBNote.Server
 {
@@ -28,55 +21,35 @@ namespace DBNote.Server
     public class MenuServer
     {
         /// <summary>
-        /// 数据库访问对象
-        /// </summary>
-        private static IDataBaseTableAccess dbBaseTableAccess;
-
-        private static NameValueCollection AppSettings;
-        /// <summary>
         /// Get Menu info.
         /// </summary>
         /// <returns></returns>
         public static MenuModel GetMenuInfo()
         {
             var resultMenu = new List<MenuModel>();
-
-            SetDbType(new SqlDataBaseTableAccess());
-            var connectionString = AppConfigurationHelper.GetString("sqlconnectionstring", null);
-            var dbList = dbBaseTableAccess.GetDataBaseModels(connectionString);
+            var dbList = BaseServer.DbBaseTableAccess.GetDataBaseModels(BaseServer.ConnectionString);
             if (dbList != null && dbList.Any())
             {
                 var i = 2;
                 dbList.ForEach(f =>
                 {
                     var childMenu = new List<MenuModel>();
-                    var tables = dbBaseTableAccess.GetTableList(connectionString, f.Name);
-                    var views = dbBaseTableAccess.GetViews(connectionString, f.Name);
+                    var tables = BaseServer.DbBaseTableAccess.GetTableList(BaseServer.ConnectionString, f.Name);
+                    var views = BaseServer.DbBaseTableAccess.GetViews(BaseServer.ConnectionString, f.Name);
                     if (tables != null && tables.Any())
                     {
-                        childMenu.AddRange(tables.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table",Menuname = r.Name}).ToList());
+                        childMenu.AddRange(tables.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name}&type=table" }).ToList());
                     }
 
                     if (views != null && views.Any())
                     {
-                        childMenu.AddRange(views.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name }).ToList());
+                        childMenu.AddRange(views.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name}&type=view" }).ToList());
                     }
                     resultMenu.Add(new MenuModel { Menuid = i++, Menuname = f.Name, Icon = "icon-database", Menus = childMenu });
                 });
             }
 
             return new MenuModel { Menus = resultMenu };
-        }
-
-        /// <summary>
-        /// 设置接口类型
-        /// </summary>
-        /// <param name="dbBaseTableAccessType"></param>
-        /// <returns></returns>
-        public static bool SetDbType(IDataBaseTableAccess dbBaseTableAccessType)
-        {
-            dbBaseTableAccess = dbBaseTableAccessType;
-            return true;
         }
     }
 }

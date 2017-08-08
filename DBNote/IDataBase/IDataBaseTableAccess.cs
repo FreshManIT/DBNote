@@ -38,5 +38,23 @@ namespace DBNote.IDataBase
         /// <param name="databaseName"></param>
         /// <returns></returns>
         List<View> GetViews(string connectionString, string databaseName);
+
+        /// <summary>
+        /// 获取表的字段
+        /// </summary>
+        /// <param name="connectionstring"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        Table GetTableInfo(string connectionstring, string databaseName, string tableName);
+
+        /// <summary>
+        /// 获取表的字段
+        /// </summary>
+        /// <param name="connectionstring"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        View GetViewInfo(string connectionstring, string databaseName, string tableName);
     }
 }
