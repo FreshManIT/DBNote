@@ -39,18 +39,9 @@ namespace DBNote.Server
         /// <returns></returns>
         public static MenuModel GetMenuInfo()
         {
-            AppSettings = ConfigurationManager.AppSettings;
             var resultMenu = new List<MenuModel>();
 
-            var tempDataBase = new MenuModel { Menuname = "DB Server", Menuid = 1, Icon = "icon-sys" };
-            var childMenu = new List<MenuModel>()
-            {
-                new MenuModel {Menuid = 12,Menuname = "FreshMan",Icon = "icon-add",Url = "http://www.baidu.com"},
-                new MenuModel {Menuid = 13,Menuname = "拖放",Icon = "icon-users",Url = "draggable.html"}
-            };
-            tempDataBase.Menus = childMenu;
-            resultMenu.Add(tempDataBase);
-            SetDbType(new DataBaseTableAccess());
+            SetDbType(new SqlDataBaseTableAccess());
             var connectionString = AppConfigurationHelper.GetString("sqlconnectionstring", null);
             var dbList = dbBaseTableAccess.GetDataBaseModels(connectionString);
             if (dbList != null && dbList.Any())
@@ -58,7 +49,19 @@ namespace DBNote.Server
                 var i = 2;
                 dbList.ForEach(f =>
                 {
-                    resultMenu.Add(new MenuModel { Menuid = i++, Menuname = f.Name, Icon = "icon-sys", Menus = childMenu });
+                    var childMenu = new List<MenuModel>();
+                    var tables = dbBaseTableAccess.GetTableList(connectionString, f.Name);
+                    var views = dbBaseTableAccess.GetViews(connectionString, f.Name);
+                    if (tables != null && tables.Any())
+                    {
+                        childMenu.AddRange(tables.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table",Menuname = r.Name}).ToList());
+                    }
+
+                    if (views != null && views.Any())
+                    {
+                        childMenu.AddRange(views.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name }).ToList());
+                    }
+                    resultMenu.Add(new MenuModel { Menuid = i++, Menuname = f.Name, Icon = "icon-database", Menus = childMenu });
                 });
             }
 

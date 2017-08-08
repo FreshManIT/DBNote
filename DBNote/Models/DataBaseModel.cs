@@ -8,10 +8,6 @@
 //用    途：记录类的用途
 //======================================================================
 #endregion
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace DBNote.Models
 {
@@ -26,5 +22,49 @@ namespace DBNote.Models
         /// Database name
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public DataBaseModel() { }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="tables"></param>
+        public DataBaseModel(Tables tables)
+        {
+            Tables = tables;
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="views"></param>
+        public DataBaseModel(Views views)
+        {
+            Views = views;
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="tables"></param>
+        /// <param name="views"></param>
+        public DataBaseModel(Tables tables, Views views)
+            : this(tables)
+        {
+            Views = views;
+        }
+
+        /// <summary>
+        /// 表格
+        /// </summary>
+        public Tables Tables { get; set; }
+
+        /// <summary>
+        /// 视图
+        /// </summary>
+        public Views Views { get; set; }
     }
 }

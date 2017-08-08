@@ -22,5 +22,21 @@ namespace DBNote.IDataBase
         /// <param name="connectionString"></param>
         /// <returns></returns>
         List<DataBaseModel> GetDataBaseModels(string connectionString);
+
+        /// <summary>
+        /// 获取数据库中的表
+        /// </summary>
+        /// <param name="connectionstring"></param>
+        /// <param name="databaseName"></param>
+        /// <returns></returns>
+        List<Table> GetTableList(string connectionstring, string databaseName);
+
+        /// <summary>
+        /// GetViews
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="databaseName"></param>
+        /// <returns></returns>
+        List<View> GetViews(string connectionString, string databaseName);
     }
 }

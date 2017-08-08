@@ -168,6 +168,10 @@ a:hover {
     background-position: -20px -140px;
 }
 
+.icon-table {
+    background-position: -180px -20px;
+}
+
 .icon-expand {
     background: url('../images/coll2.gif') no-repeat;
 }
