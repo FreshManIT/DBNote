@@ -59,17 +59,33 @@ namespace DBNote.DataBase
                 string comment = string.Empty;
                 int objectId = dr.GetInt32(1);
 
-                Table table = new Table(id, displayName, name, comment)
+                Table table = new Table(objectId, id, displayName, name, comment)
                 {
                     OriginalName = name,
-                    Columns = GetColumns(objectId, connectionstring)
                 };
-                table.PrimaryKeys = GetPrimaryKeys(objectId, connectionstring, table.Columns);
                 tables.Add(table);
             }
             dr.Close();
 
             return tables;
+        }
+
+        /// <summary>
+        /// 获取表的字段
+        /// </summary>
+        /// <param name="connectionstring"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public Table GetTableInfo(string connectionstring, string databaseName, string tableName)
+        {
+            var tableList = GetTableList(connectionstring, databaseName);
+            if (tableList == null || !tableList.Any()) return null;
+            var table = tableList.FirstOrDefault(f => f.Name == tableName);
+            if (table == null) return null;
+            table.Columns = GetColumns(table.ObjectId, connectionstring);
+            table.PrimaryKeys = GetPrimaryKeys(table.ObjectId, connectionstring, table.Columns);
+            return table;
         }
 
         /// <summary>
@@ -92,16 +108,34 @@ namespace DBNote.DataBase
                 string comment = string.Empty;
                 int objectId = dr.GetInt32(1);
 
-                View view = new View(id, displayName, name, comment)
+                View view = new View(objectId, id, displayName, name, comment)
                 {
                     OriginalName = name,
-                    Columns = GetColumns(objectId, connectionString)
+                    //Columns = GetColumns(objectId, connectionString)
                 };
                 views.Add(view);
             }
             dr.Close();
 
             return views;
+        }
+
+
+        /// <summary>
+        /// 获取表的字段
+        /// </summary>
+        /// <param name="connectionstring"></param>
+        /// <param name="databaseName"></param>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public View GetViewInfo(string connectionstring, string databaseName, string tableName)
+        {
+            var tableList = GetViews(connectionstring, databaseName);
+            if (tableList == null || !tableList.Any()) return null;
+            var table = tableList.FirstOrDefault(f => f.Name == tableName);
+            if (table == null) return null;
+            table.Columns = GetColumns(table.ObjectId, connectionstring);
+            return table;
         }
 
         /// <summary>

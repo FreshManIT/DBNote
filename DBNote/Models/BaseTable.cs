@@ -25,6 +25,15 @@
             this._comment = comment;
         }
 
+        protected BaseTable(int objectId,string id, string displayName, string name, string comment)
+        {
+            ObjectId = objectId;
+            this._id = id;
+            this._displayName = displayName;
+            this._name = name;
+            this._comment = comment;
+        }
+
         public string Id
         {
             get { return this._id; }
@@ -54,6 +63,8 @@
             get { return this._comment; }
             set { this._comment = value; }
         }
+
+        public int ObjectId { get; set; }
 
         public string MetaTypeName
         {
