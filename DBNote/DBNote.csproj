@@ -270,6 +270,7 @@
     <Content Include="js\locale\easyui-lang-zh_CN.js" />
     <Content Include="js\locale\easyui-lang-zh_TW.js" />
     <Content Include="js\outlook2.js" />
+    <Content Include="js\ShowTableInfo.js" />
     <Content Include="js\themes\default\accordion.css" />
     <Content Include="js\themes\default\calendar.css" />
     <Content Include="js\themes\default\combo.css" />
