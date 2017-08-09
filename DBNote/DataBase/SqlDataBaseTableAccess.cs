@@ -83,7 +83,7 @@ namespace DBNote.DataBase
             if (tableList == null || !tableList.Any()) return null;
             var table = tableList.FirstOrDefault(f => f.Name == tableName);
             if (table == null) return null;
-            table.Columns = GetColumns(table.ObjectId, connectionstring);
+            table.Columns = GetColumns(table.ObjectId, connectionstring, databaseName);
             table.PrimaryKeys = GetPrimaryKeys(table.ObjectId, connectionstring, table.Columns);
             return table;
         }
@@ -143,16 +143,18 @@ namespace DBNote.DataBase
         /// </summary>
         /// <param name="objectId"></param>
         /// <param name="connectionString"></param>
+        /// <param name="dataBaseName"></param>
         /// <returns></returns>
-        private Columns GetColumns(int objectId, string connectionString)
+        private Columns GetColumns(int objectId, string connectionString, string dataBaseName = null)
         {
+            if (!string.IsNullOrEmpty(dataBaseName)) dataBaseName = $"[{dataBaseName}].";
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.Append("select c.object_id,c.column_id,c.name,c.max_length,c.is_identity,c.is_nullable,c.is_computed,");
             sqlBuilder.Append("t.name as type_name,p.value as description,d.definition as default_value ");
-            sqlBuilder.Append("from sys.columns as c ");
-            sqlBuilder.Append("inner join sys.types as t on c.user_type_id =  t.user_type_id ");
-            sqlBuilder.Append("left join sys.extended_properties as p on p.major_id = c.object_id and p.minor_id = c.column_id ");
-            sqlBuilder.Append("left join sys.default_constraints as d on d.parent_object_id = c.object_id and d.parent_column_id = c.column_id ");
+            sqlBuilder.AppendFormat("from {0}sys.columns as c ", dataBaseName);
+            sqlBuilder.AppendFormat("inner join {0}sys.types as t on c.user_type_id =  t.user_type_id ", dataBaseName);
+            sqlBuilder.AppendFormat("left join {0}sys.extended_properties as p on p.major_id = c.object_id and p.minor_id = c.column_id ", dataBaseName);
+            sqlBuilder.AppendFormat("left join {0}sys.default_constraints as d on d.parent_object_id = c.object_id and d.parent_column_id = c.column_id ", dataBaseName);
             sqlBuilder.AppendFormat("where c.object_id={0}", objectId);
 
             return GetColumns(connectionString, sqlBuilder.ToString());

@@ -10,20 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="../../Css/default.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../js/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../../js/themes/gray/easyui.css" />
     <link rel="stylesheet" type="text/css" href="../../js/themes/icon.css" />
     <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.easyui.min.1.2.2.js"></script>
 </head>
 <body>
-    <div id="tb">
+    @*<div id="tb">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:alert('Add')">Add</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="javascript:alert('Cut')">Cut</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:alert('Save')">Save</a>
-    </div>
-    <table id="tt" class="easyui-datagrid" style="min-width:850px;"
+    </div>*@
+    <table id="tt" class="easyui-datagrid bgwhite" style="min-width:850px;"
            url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@(ViewBag.tableName)&type=@(ViewBag.type)"
-           title="DataGrid with Toolbar" iconCls="icon-save"
+           title="数据库名称：@(ViewBag.databaseName) 表名称：@(ViewBag.tableName)" iconCls="icon-database icon"
            toolbar="#tb">
         <thead>
             <tr>
@@ -35,7 +35,7 @@
                 <th field="IsAutoIncremented" width="100">是否自动增长</th>
                 <th field="IsNullable" width="100">是否可空</th>
                 <th field="Length" width="50">长度</th>
-                <th field="Comment" min-width="50">备注</th>
+                <th field="Comment">备注</th>
             </tr>
         </thead>
     </table>

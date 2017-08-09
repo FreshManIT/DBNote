@@ -41,7 +41,7 @@ function InitLeftMenu() {
         var menuid = $(this).attr("ref");
         var icon = getIcon(menuid, icon);
 
-        addTab(tabTitle, url, icon);
+        addTab(tabTitle, url, icon, menuid);
         $('.easyui-accordion li div').removeClass("selected");
         $(this).parent().addClass("selected");
     }).hover(function() {
@@ -69,16 +69,16 @@ function getIcon(menuid) {
     return icon;
 }
 
-function addTab(subtitle, url, icon) {
-    if (!$('#tabs').tabs('exists', subtitle)) {
+function addTab(subtitle, url, icon,menuId) {
+    if (!$('#tabs').tabs('exists', subtitle+menuId)) {
         $('#tabs').tabs('add', {
-            title: subtitle,
+            title: subtitle + menuId,
             content: createFrame(url),
             closable: true,
             icon: icon
         });
     } else {
-        $('#tabs').tabs('select', subtitle);
+        $('#tabs').tabs('select', subtitle + menuId);
         $('#mm-tabupdate').click();
     }
     tabClose();
