@@ -470,8 +470,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="js\themes\default\images\Thumbs.db" />
-    <Content Include="js\themes\gray\images\Thumbs.db" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\ShowTableInfo.cshtml" />
   </ItemGroup>
