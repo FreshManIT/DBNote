@@ -9,6 +9,8 @@
 //======================================================================
 #endregion
 
+using System.Linq;
+using DBNote.Enum;
 using DBNote.Models;
 
 namespace DBNote.Server
@@ -16,17 +18,21 @@ namespace DBNote.Server
     /// <summary>
     /// 表，视图服务
     /// </summary>
-    public class TableViewServer
+    public static class TableViewServer
     {
         /// <summary>
         /// 获取Table的信息
         /// </summary>
         /// <param name="dataBaseName"></param>
         /// <param name="tableName"></param>
+        /// <param name="dbType"></param>
         /// <returns></returns>
-        public static Table GetTableInfo(string dataBaseName, string tableName)
+        public static Table GetTableInfo(string dataBaseName, string tableName, DataBaseTypeEnum dbType)
         {
-            return BaseServer.DbBaseTableAccess.GetTableInfo(BaseServer.ConnectionString, dataBaseName, tableName);
+            var serverAdapter = new ServerAdapter(dbType);
+            if (serverAdapter.ServerList == null || !serverAdapter.ServerList.Any()) return null;
+            var baseServer = serverAdapter.ServerList.First();
+            return baseServer.DbBaseTableAccess.GetTableInfo(baseServer.ConnectionString, dataBaseName, tableName);
         }
 
         /// <summary>
@@ -35,9 +41,12 @@ namespace DBNote.Server
         /// <param name="dataBaseName"></param>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public static View GetViewInfo(string dataBaseName, string tableName)
+        public static View GetViewInfo(string dataBaseName, string tableName, DataBaseTypeEnum dbType)
         {
-            return BaseServer.DbBaseTableAccess.GetViewInfo(BaseServer.ConnectionString, dataBaseName, tableName);
+            var serverAdapter = new ServerAdapter(dbType);
+            if (serverAdapter.ServerList == null || !serverAdapter.ServerList.Any()) return null;
+            var baseServer = serverAdapter.ServerList.First();
+            return baseServer.DbBaseTableAccess.GetViewInfo(baseServer.ConnectionString, dataBaseName, tableName);
         }
     }
 }

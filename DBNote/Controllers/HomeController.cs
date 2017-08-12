@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DBNote.Enum;
 using DBNote.Models;
 using DBNote.Server;
+using FreshCommonUtility.Enum;
 using FreshCommonUtility.Web;
 using Newtonsoft.Json;
 
@@ -33,6 +35,10 @@ namespace DBNote.Controllers
             ViewBag.databaseName = System.Web.HttpContext.Current.GetStringFromParameters("datatableName");
             ViewBag.tableName = System.Web.HttpContext.Current.GetStringFromParameters("tableName");
             ViewBag.type = System.Web.HttpContext.Current.GetStringFromParameters("type");
+            var dbType = System.Web.HttpContext.Current.GetIntFromParameters("dbType");
+            ViewBag.dbType = dbType;
+            var dbTypeEnum = EnumHelper.GetEnumByValue<DataBaseTypeEnum>(dbType);
+            ViewBag.dbTypeDescription = EnumHelper.GetDescriptionByEnum(dbTypeEnum);
             return View();
         }
 
@@ -45,14 +51,16 @@ namespace DBNote.Controllers
             var databaseName = System.Web.HttpContext.Current.GetStringFromParameters("datatableName");
             var tableName = System.Web.HttpContext.Current.GetStringFromParameters("tableName");
             var type = System.Web.HttpContext.Current.GetStringFromParameters("type");
+            var dbType = System.Web.HttpContext.Current.GetIntFromParameters("dbType");
+            var dbTypeEnum = EnumHelper.GetEnumByValue<DataBaseTypeEnum>(dbType);
             BaseTable baseInfo = null;
             if (type == "table")
             {
-                baseInfo = TableViewServer.GetTableInfo(databaseName, tableName);
+                baseInfo = TableViewServer.GetTableInfo(databaseName, tableName, dbTypeEnum);
             }
             else if (type == "view")
             {
-                baseInfo = TableViewServer.GetViewInfo(databaseName, tableName);
+                baseInfo = TableViewServer.GetViewInfo(databaseName, tableName, dbTypeEnum);
             }
             var result = new
             {

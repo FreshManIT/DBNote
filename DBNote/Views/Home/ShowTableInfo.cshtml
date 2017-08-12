@@ -18,8 +18,8 @@
 <body>
     <div class="accordion">
         <table id="tt" class="easyui-datagrid bgwhite" style="min-width:850px;"
-               url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@(ViewBag.tableName)&type=@(ViewBag.type)"
-               title="数据库名称：@(ViewBag.databaseName) 表名称：@(ViewBag.tableName)" iconCls="icon-database icon"
+               url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@(ViewBag.tableName)&type=@(ViewBag.type)&dbType=@(ViewBag.dbType)"
+               title="数据库类型：@(ViewBag.dbTypeDescription) 名称：@(ViewBag.databaseName) 表名称：@(ViewBag.tableName)" iconCls="icon-database icon"
                toolbar="#tb" singleSelect="true">
             <thead>
                 <tr>

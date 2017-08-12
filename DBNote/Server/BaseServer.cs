@@ -8,12 +8,9 @@
 //用    途：记录类的用途
 //======================================================================
 #endregion
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls.WebParts;
+
 using DBNote.DataBase;
+using DBNote.Enum;
 using DBNote.IDataBase;
 using FreshCommonUtility.Configure;
 
@@ -27,42 +24,40 @@ namespace DBNote.Server
         /// <summary>
         /// 数据库访问对象
         /// </summary>
-        public static IDataBaseTableAccess DbBaseTableAccess;
+        public IDataBaseTableAccess DbBaseTableAccess { get; }
 
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        public static string ConnectionString;
+        public string ConnectionString { get; }
+
+        /// <summary>
+        /// 当前数据库类型
+        /// </summary>
+        public DataBaseTypeEnum CurrentDataBaseTypeEnum { get; }
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        static BaseServer()
+        public BaseServer()
         {
             DbBaseTableAccess = new SqlDataBaseTableAccess();
-            ConnectionString = AppConfigurationHelper.GetString("sqlconnectionstring", null);
+            ConnectionString = AppConfigurationHelper.GetString("SqlServerConnectionstring", null);
+            CurrentDataBaseTypeEnum = DataBaseTypeEnum.SqlServer;
         }
 
         /// <summary>
-        /// 设置接口类型
-        /// </summary>
-        /// <param name="dbBaseTableAccessType"></param>
-        /// <returns></returns>
-        public static bool SetDbType(IDataBaseTableAccess dbBaseTableAccessType)
-        {
-            DbBaseTableAccess = dbBaseTableAccessType;
-            return true;
-        }
-
-        /// <summary>
-        /// 设置连接字符串
+        /// 构造函数
         /// </summary>
         /// <param name="connectionString"></param>
+        /// <param name="dbBaseTableAccessType"></param>
+        /// <param name="dbType"></param>
         /// <returns></returns>
-        public static bool SetDbConnectionString(string connectionString)
+        public BaseServer(string connectionString, IDataBaseTableAccess dbBaseTableAccessType, DataBaseTypeEnum dbType)
         {
             ConnectionString = connectionString;
-            return true;
+            DbBaseTableAccess = dbBaseTableAccessType;
+            CurrentDataBaseTypeEnum = dbType;
         }
     }
 }
