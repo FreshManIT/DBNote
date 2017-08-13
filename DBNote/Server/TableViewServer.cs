@@ -40,6 +40,7 @@ namespace DBNote.Server
         /// </summary>
         /// <param name="dataBaseName"></param>
         /// <param name="tableName"></param>
+        /// <param name="dbType"></param>
         /// <returns></returns>
         public static View GetViewInfo(string dataBaseName, string tableName, DataBaseTypeEnum dbType)
         {

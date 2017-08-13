@@ -9,10 +9,8 @@
 //======================================================================
 #endregion
 
-using DBNote.DataBase;
 using DBNote.Enum;
 using DBNote.IDataBase;
-using FreshCommonUtility.Configure;
 
 namespace DBNote.Server
 {
@@ -35,16 +33,6 @@ namespace DBNote.Server
         /// 当前数据库类型
         /// </summary>
         public DataBaseTypeEnum CurrentDataBaseTypeEnum { get; }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public BaseServer()
-        {
-            DbBaseTableAccess = new SqlDataBaseTableAccess();
-            ConnectionString = AppConfigurationHelper.GetString("SqlServerConnectionstring", null);
-            CurrentDataBaseTypeEnum = DataBaseTypeEnum.SqlServer;
-        }
 
         /// <summary>
         /// 构造函数

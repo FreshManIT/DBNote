@@ -8,13 +8,10 @@
 //用    途：记录类的用途
 //======================================================================
 #endregion
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using DBNote.DataBase;
 using DBNote.Enum;
-using FreshCommonUtility.Configure;
 
 namespace DBNote.Server
 {
@@ -34,18 +31,27 @@ namespace DBNote.Server
         /// <param name="dataBaseType"></param>
         public ServerAdapter(DataBaseTypeEnum dataBaseType)
         {
+            var config = new SqliteDataAccess().GetConfigModels();
+            if (config == null || !config.Any()) return;
             if (dataBaseType == DataBaseTypeEnum.NotDesignated) return;
             ServerList = new List<BaseServer>();
+
             if ((dataBaseType & DataBaseTypeEnum.SqlServer) == DataBaseTypeEnum.SqlServer)
             {
-                ServerList.Add(new BaseServer());
+                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.SqlServer);
+                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                {
+                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlDataBaseTableAccess(), DataBaseTypeEnum.SqlServer));
+                }
             }
             if ((dataBaseType & DataBaseTypeEnum.MySql) == DataBaseTypeEnum.MySql)
             {
-                var dbBaseTableAccess = new MySqlDataAccess();
-                var connectionString = AppConfigurationHelper.GetString("MySqlConnectionstring", null);
-                const DataBaseTypeEnum currentDataBaseTypeEnum = DataBaseTypeEnum.MySql;
-                ServerList.Add(new BaseServer(connectionString, dbBaseTableAccess, currentDataBaseTypeEnum));
+                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.MySql);
+                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                {
+                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new MySqlDataAccess(), DataBaseTypeEnum.MySql));
+                }
+
             }
         }
     }

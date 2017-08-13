@@ -219,6 +219,7 @@
     <Compile Include="DataBase\MySqlDataAccess.cs" />
     <Compile Include="DataBase\SqlDataBaseTableAccess.cs" />
     <Compile Include="DataBase\SqlHelper.cs" />
+    <Compile Include="DataBase\SqliteDataAccess.cs" />
     <Compile Include="Enum\DataBaseTypeEnum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +228,7 @@
     <Compile Include="Models\BaseTable.cs" />
     <Compile Include="Models\Column.cs" />
     <Compile Include="Models\Columns.cs" />
+    <Compile Include="Models\DataBaseLinkConfigModel.cs" />
     <Compile Include="Models\DataBaseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMetaData.cs" />
