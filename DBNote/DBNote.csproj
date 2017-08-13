@@ -225,6 +225,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IDataBase\IDataBaseTableAccess.cs" />
+    <Compile Include="Models\BaseResultModel.cs" />
     <Compile Include="Models\BaseTable.cs" />
     <Compile Include="Models\Column.cs" />
     <Compile Include="Models\Columns.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Models\Views.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\BaseServer.cs" />
+    <Compile Include="Server\DataBaseConfigServer.cs" />
     <Compile Include="Server\MenuServer.cs" />
     <Compile Include="Server\ServerAdapter.cs" />
     <Compile Include="Server\TableViewServer.cs" />
@@ -260,6 +262,7 @@
     <Content Include="images\tabicons.png" />
     <Content Include="images\TableDrawTable.png" />
     <Content Include="images\tools-sprites-trans.gif" />
+    <Content Include="js\ConfigInfo.js" />
     <Content Include="js\easyloader.js" />
     <Content Include="js\jquery-1.4.4.min.js" />
     <Content Include="js\jquery.easyui.min.1.2.2.js" />
@@ -477,6 +480,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\ShowTableInfo.cshtml" />
+    <Content Include="Views\Shared\_DetailPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,6 +11,7 @@
 
 using DBNote.Enum;
 using FreshCommonUtility.Dapper;
+using FreshCommonUtility.Enum;
 
 namespace DBNote.Models
 {
@@ -39,5 +40,11 @@ namespace DBNote.Models
         /// 连接字符串
         /// </summary>
         public string LinkConnectionString { get; set; }
+
+        /// <summary>
+        /// 数据库类型描述
+        /// </summary>
+        [NotMapped]
+        public string DbTypeString => EnumHelper.GetDescriptionByEnum(DbType);
     }
 }

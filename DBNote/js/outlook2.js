@@ -1,10 +1,10 @@
-﻿$(function() {
+﻿$(function () {
     InitLeftMenu();
     tabClose();
     tabCloseEven();
 
     $('#tabs').tabs({
-        onSelect: function(title) {
+        onSelect: function (title) {
             var currTab = $('#tabs').tabs('getTab', title);
             var iframe = $(currTab.panel('options').content);
 
@@ -19,10 +19,10 @@
 function InitLeftMenu() {
     $("#nav").accordion({ animate: false });
 
-    $.each(_menus.menus, function(i, n) {
+    $.each(_menus.menus, function (i, n) {
         var menulist = '';
         menulist += '<ul>';
-        $.each(n.menus, function(j, o) {
+        $.each(n.menus, function (j, o) {
             menulist += '<li><div><a ref="' + o.menuid + '" href="#" rel="' + o.url + '" ><span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">' + o.menuname + '</span></a></div></li> ';
         })
         menulist += '</ul>';
@@ -34,7 +34,7 @@ function InitLeftMenu() {
         });
     });
 
-    $('.easyui-accordion li a').click(function() {
+    $('.easyui-accordion li a').click(function () {
         var tabTitle = $(this).children('.nav').text();
 
         var url = $(this).attr("rel");
@@ -44,9 +44,9 @@ function InitLeftMenu() {
         addTab(tabTitle, url, icon, menuid);
         $('.easyui-accordion li div').removeClass("selected");
         $(this).parent().addClass("selected");
-    }).hover(function() {
+    }).hover(function () {
         $(this).parent().addClass("hover");
-    }, function() {
+    }, function () {
         $(this).parent().removeClass("hover");
     });
 
@@ -58,8 +58,8 @@ function InitLeftMenu() {
 //获取左侧导航的图标
 function getIcon(menuid) {
     var icon = 'icon ';
-    $.each(_menus.menus, function(i, n) {
-        $.each(n.menus, function(j, o) {
+    $.each(_menus.menus, function (i, n) {
+        $.each(n.menus, function (j, o) {
             if (o.menuid == menuid) {
                 icon += o.icon;
             }
@@ -69,8 +69,8 @@ function getIcon(menuid) {
     return icon;
 }
 
-function addTab(subtitle, url, icon,menuId) {
-    if (!$('#tabs').tabs('exists', subtitle+menuId)) {
+function addTab(subtitle, url, icon, menuId) {
+    if (!$('#tabs').tabs('exists', subtitle + menuId)) {
         $('#tabs').tabs('add', {
             title: subtitle + menuId,
             content: createFrame(url),
@@ -91,12 +91,12 @@ function createFrame(url) {
 
 function tabClose() {
     /*双击关闭TAB选项卡*/
-    $(".tabs-inner").dblclick(function() {
+    $(".tabs-inner").dblclick(function () {
         var subtitle = $(this).children(".tabs-closable").text();
         $('#tabs').tabs('close', subtitle);
     });
     /*为选项卡绑定右键*/
-    $(".tabs-inner").bind('contextmenu', function(e) {
+    $(".tabs-inner").bind('contextmenu', function (e) {
         $('#mm').menu('show', {
             left: e.pageX,
             top: e.pageY
@@ -114,7 +114,7 @@ function tabClose() {
  */
 function tabCloseEven() {
     //刷新
-    $('#mm-tabupdate').click(function() {
+    $('#mm-tabupdate').click(function () {
         var currTab = $('#tabs').tabs('getSelected');
         var url = $(currTab.panel('options').content).attr('src');
         $('#tabs').tabs('update', {
@@ -125,43 +125,43 @@ function tabCloseEven() {
         })
     });
     //关闭当前
-    $('#mm-tabclose').click(function() {
+    $('#mm-tabclose').click(function () {
         var currtab_title = $('#mm').data("currtab");
         $('#tabs').tabs('close', currtab_title);
     });
     //全部关闭
-    $('#mm-tabcloseall').click(function() {
-        $('.tabs-inner span').each(function(i, n) {
+    $('#mm-tabcloseall').click(function () {
+        $('.tabs-inner span').each(function (i, n) {
             var t = $(n).text();
             $('#tabs').tabs('close', t);
         });
     });
     //关闭除当前之外的TAB
-    $('#mm-tabcloseother').click(function() {
+    $('#mm-tabcloseother').click(function () {
         $('#mm-tabcloseright').click();
         $('#mm-tabcloseleft').click();
     });
     //关闭当前右侧的TAB
-    $('#mm-tabcloseright').click(function() {
+    $('#mm-tabcloseright').click(function () {
         var nextall = $('.tabs-selected').nextAll();
         if (nextall.length == 0) {
             msgShow('系统提示', '后边没有啦~~', 'info');
             return false;
         }
-        nextall.each(function(i, n) {
+        nextall.each(function (i, n) {
             var t = $('a:eq(0) span', $(n)).text();
             $('#tabs').tabs('close', t);
         });
         return false;
     });
     //关闭当前左侧的TAB
-    $('#mm-tabcloseleft').click(function() {
+    $('#mm-tabcloseleft').click(function () {
         var prevall = $('.tabs-selected').prevAll();
         if (prevall.length == 0) {
             msgShow('系统提示', '到头了，前边没有啦~~', 'info');
             return false;
         }
-        prevall.each(function(i, n) {
+        prevall.each(function (i, n) {
             var t = $('a:eq(0) span', $(n)).text();
             $('#tabs').tabs('close', t);
         });
@@ -169,7 +169,7 @@ function tabCloseEven() {
     });
 
     //退出
-    $("#mm-exit").click(function() {
+    $("#mm-exit").click(function () {
         $('#mm').menu('hide');
     })
 }

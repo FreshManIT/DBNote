@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.easyui.min.1.2.2.js"></script>
     <script type="text/javascript" src='../../js/outlook2.js'></script>
+    @RenderSection("css",false)
     <script type="text/javascript">
         var _menus = @Html.Raw(ViewBag.MenuJson);
         //设置登录窗口
@@ -63,14 +64,14 @@
                 $('#w').window('open');
             });
 
-            $('#btnEp').click(function () {
+            $('#btnEp').click(function() {
                 serverLogin();
-            })
+            });
 
             $('#btnCancel').click(function () {
                 closePwd();
             });
-
+            closePwd();
             $('#loginOut').click(function () {
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
 
@@ -84,15 +85,17 @@
 </head>
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
     <noscript>
-        <div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
+        <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px; width: 100%; background: white; text-align: center;">
             <img src="../../images/noscript.gif" alt='抱歉，请开启脚本支持！' />
         </div>
     </noscript>
-    <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(../../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
-        line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-        <span style="float:right; padding-right:20px;" class="head">欢迎 FreshMan <a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
-        <span style="padding-left:10px; font-size: 16px; "><img src="../../images/blocks.gif" width="20" height="20" align="absmiddle" />DBNote 1.0.1</span>
+    <div region="north" split="true" style="overflow: hidden; background: #D2E0F2; height: 35px;font-family: Verdana, 微软雅黑,黑体">
+        <span style="float: right; padding-right: 20px;height: 20px">
+            欢迎 FreshMan
+            <a href="#" id="editpass">修改密码</a>
+            <a href="#" id="loginOut">安全退出</a>
+        </span>
+        <span style="padding-left:10px; font-size: 16px; "><img src="../../images/blocks.gif" width="20" height="20" />DBNote 1.0.1</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">Authon FreshMan &copy2017-2020</div>

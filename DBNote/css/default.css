@@ -102,6 +102,10 @@ a:hover {
     font-weight: bold;
 }
 
+.width-300 {
+    width: 300px;
+}
+
 .icon {
     background: url(../images/tabicons.png) no-repeat;
     width: 18px;

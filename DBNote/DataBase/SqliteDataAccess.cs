@@ -44,6 +44,7 @@ namespace DBNote.DataBase
             ConnectionString = $"Data Source={_filePath};Version=3;";
             CreateSqliteDb();
         }
+
         /// <summary>
         /// 创建数据库
         /// </summary>
