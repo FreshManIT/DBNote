@@ -23,8 +23,16 @@ namespace DBNote.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var menu = MenuServer.GetMenuInfo();
-            ViewBag.MenuJson = JsonConvert.SerializeObject(menu);
+            try
+            {
+                var menu = MenuServer.GetMenuInfo();
+                ViewBag.MenuJson = JsonConvert.SerializeObject(menu);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.MenuJson = "null";
+                ErrorInfoServer.Push(ex);
+            }
             return View();
         }
 
@@ -56,13 +64,20 @@ namespace DBNote.Controllers
             var dbType = System.Web.HttpContext.Current.GetIntFromParameters("dbType");
             var dbTypeEnum = EnumHelper.GetEnumByValue<DataBaseTypeEnum>(dbType);
             BaseTable baseInfo = null;
-            if (type == "table")
+            try
             {
-                baseInfo = TableViewServer.GetTableInfo(databaseName, tableName, dbTypeEnum);
+                if (type == "table")
+                {
+                    baseInfo = TableViewServer.GetTableInfo(databaseName, tableName, dbTypeEnum);
+                }
+                else if (type == "view")
+                {
+                    baseInfo = TableViewServer.GetViewInfo(databaseName, tableName, dbTypeEnum);
+                }
             }
-            else if (type == "view")
+            catch (Exception ex)
             {
-                baseInfo = TableViewServer.GetViewInfo(databaseName, tableName, dbTypeEnum);
+                ErrorInfoServer.Push(ex);
             }
             var result = new
             {
@@ -78,7 +93,15 @@ namespace DBNote.Controllers
         /// <returns></returns>
         public JsonResult DataBaseConfigJson()
         {
-            var configList = DataBaseConfigServer.GetConfigModels();
+            List<DataBaseLinkConfigModel> configList = null;
+            try
+            {
+                configList = DataBaseConfigServer.GetConfigModels();
+            }
+            catch (Exception ex)
+            {
+                ErrorInfoServer.Push(ex);
+            }
             var result = new
             {
                 total = configList?.Count,
@@ -108,12 +131,21 @@ namespace DBNote.Controllers
                 result.Des = "请求参数解析失败";
                 return Json(result);
             }
-            configModel.ForEach(f =>
+            try
             {
-                DataBaseConfigServer.DeleteConfigModel(f);
-            });
-            result.Code = "0000";
-            result.Des = "删除成功";
+                configModel.ForEach(f =>
+                {
+                    DataBaseConfigServer.DeleteConfigModel(f);
+                });
+                result.Code = "0000";
+                result.Des = "删除成功";
+            }
+            catch (Exception ex)
+            {
+                ErrorInfoServer.Push(ex);
+                result.Code = "0000";
+                result.Des = ex.Message;
+            }
             return Json(result);
         }
 
@@ -148,6 +180,21 @@ namespace DBNote.Controllers
             var success = DataBaseConfigServer.UpdateConfigModel(model);
             result.Code = success ? "0000" : "0001";
             result.Des = success ? "成功" : "失败";
+            return Json(result);
+        }
+
+        /// <summary>
+        /// 获得错误信息
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetErrorInfo()
+        {
+            var errorInfo = ErrorInfoServer.GetErrorModels();
+            var result = new
+            {
+                total = errorInfo?.Count,
+                rows = errorInfo
+            };
             return Json(result);
         }
     }

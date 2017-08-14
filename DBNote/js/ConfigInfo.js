@@ -2,6 +2,7 @@
 $(function () {
     //无参数时执行此方法
     initTable("");
+    initErrorTable();
 });
 
 //实现DataGird控件的绑定操作
@@ -10,7 +11,7 @@ function initTable(pars) {
         //定位到Table标签，Table标签的ID是tableShowData
         //fitColumns: true,
         url: '/Home/DataBaseConfigJson', //指向后台的Action来获取当前用户的信息的Json格式的数据
-        title: '欢迎使用DBNote,设置数据库连接配置', //表格标题
+        title: '设置数据库连接配置', //表格标题
         iconCls: 'icon-set icon',
         //height: 100,
         nowrap: true,
@@ -44,34 +45,67 @@ function initTable(pars) {
         },
         //表头的按钮
         toolbar: [
-            {
-                id: 'btnCancle',
-                text: '删除',
-                iconCls: 'icon-cancel',
-                handler: function () {
-                    //实现直接删除所有数据的方法
-                    Delete();
-                }
-            }, '-', {
-                id: 'btnEdit',
-                text: '编辑',
-                iconCls: 'icon-edit',
-                handler: function () {
-                    //编辑所选人员的信息方法
-                    Update();
-                }
-            }, '-', {
-                id: 'btnAdd',
-                text: '添加',
-                iconCls: 'icon-add',
-                handler: function () {
-                    Add();
-                }
-            }
+             {
+                 id: 'btnAdd',
+                 text: '添加',
+                 iconCls: 'icon-add',
+                 handler: function () {
+                     Add();
+                 }
+             }, '-', {
+                 id: 'btnCancle',
+                 text: '删除',
+                 iconCls: 'icon-cancel',
+                 handler: function () {
+                     //实现直接删除所有数据的方法
+                     Delete();
+                 }
+             }, '-', {
+                 id: 'btnEdit',
+                 text: '编辑',
+                 iconCls: 'icon-edit',
+                 handler: function () {
+                     //编辑所选人员的信息方法
+                     Update();
+                 }
+             }
         ]
     });
 }
 
+//实现错误信息的表格
+function initErrorTable(pars) {
+    $('#errorInfoTable').datagrid({
+        //定位到Table标签，Table标签的ID是tableShowData
+        //fitColumns: true,
+        url: '/Home/GetErrorInfo', //指向后台的Action来获取当前用户的信息的Json格式的数据
+        title: '错误信息', //表格标题
+        iconCls: 'icon-cancel icon',
+        //height: 100,
+        nowrap: true,
+        loadMsg: '正在加载配置信息...',
+        autoRowHeight: false,
+        striped: true,
+        collapsible: false,
+        //pagination: true,
+        singleSelect: true,
+        rownumbers: true, //添加列数字
+        //sortName: 'ID',    //根据某个字段给easyUI排序
+        //sortOrder: 'asc',
+        remoteSort: false,
+        idField: 'Id', //主键
+        queryParams: pars, //异步查询的参数
+        //pageList: [5, 10, 15, 20, 25, 30], //分页的分组设置
+        //pageSize: 10, //每页的默认值大小
+        columns: [
+            [
+                { field: 'ErrorType', title: '错误类型', width: 300 },
+            { field: 'ErrorTime', title: '时间', width: 110 },
+                { field: 'ErrorStack', title: '错误堆栈' }
+            ]
+        ]
+    });
+}
 //删除选中的行
 function Delete() {
     var rows = getMoreSelectedRow();
@@ -118,7 +152,8 @@ function Update() {
     var $linkName = $('#LinkName');
     var $linkConnectionString = $("#LinkConnectionString");
     var $configId = $("#configId");
-    $dbType.val(rows.DbType);
+    $dbType.combobox('setValue', rows.DbType);
+    //$dbType.val(rows.DbType);
     $linkName.val(rows.LinkName);
     $linkConnectionString.val(rows.LinkConnectionString);
     $configId.val(rows.Id);
@@ -143,7 +178,7 @@ function serverInfo() {
     var $linkConnectionString = $("#LinkConnectionString");
     var $configId = $("#configId");
 
-    if ($dbType.val() == '') {
+    if ($dbType.combobox('getValue') == '') {
         msgShow('系统提示', '请输入数据库类型！', 'warning');
         return false;
     }
@@ -159,7 +194,7 @@ function serverInfo() {
     var data = {};
     data.Id = $configId.val();
     data.LinkName = $linkName.val();
-    data.DbType = $dbType.val();
+    data.DbType = $dbType.combobox('getValue');
     data.LinkConnectionString = $linkConnectionString.val();
     $.ajax({
         url: "/Home/UpdateOrAddConfig",
@@ -202,4 +237,5 @@ function getMoreSelectedRow() {
 //重新加载表格
 function ReloadData() {
     $("#tableShowData").datagrid('reload');
+    $("#errorInfoTable").datagrid('reload');
 }

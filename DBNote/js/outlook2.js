@@ -19,20 +19,22 @@
 function InitLeftMenu() {
     $("#nav").accordion({ animate: false });
 
-    $.each(_menus.menus, function (i, n) {
-        var menulist = '';
-        menulist += '<ul>';
-        $.each(n.menus, function (j, o) {
-            menulist += '<li><div><a ref="' + o.menuid + '" href="#" rel="' + o.url + '" ><span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">' + o.menuname + '</span></a></div></li> ';
-        })
-        menulist += '</ul>';
+    if (_menus && _menus != 'null') {
+        $.each(_menus.menus, function (i, n) {
+            var menulist = '';
+            menulist += '<ul>';
+            $.each(n.menus, function (j, o) {
+                menulist += '<li><div><a ref="' + o.menuid + '" href="#" rel="' + o.url + '" ><span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">' + o.menuname + '</span></a></div></li> ';
+            })
+            menulist += '</ul>';
 
-        $('#nav').accordion('add', {
-            title: n.menuname,
-            content: menulist,
-            iconCls: 'icon ' + n.icon
+            $('#nav').accordion('add', {
+                title: n.menuname,
+                content: menulist,
+                iconCls: 'icon ' + n.icon
+            });
         });
-    });
+    }
 
     $('.easyui-accordion li a').click(function () {
         var tabTitle = $(this).children('.nav').text();
@@ -52,8 +54,10 @@ function InitLeftMenu() {
 
     //选中第一个
     var panels = $('#nav').accordion('panels');
-    var t = panels[0].panel('options').title;
-    $('#nav').accordion('select', t);
+    if (panels && panels.length > 0) {
+        var t = panels[0].panel('options').title;
+        $('#nav').accordion('select', t);
+    }
 }
 //获取左侧导航的图标
 function getIcon(menuid) {

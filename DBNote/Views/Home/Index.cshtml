@@ -4,7 +4,12 @@
 }
 
 <div title="欢迎使用">
-    <table id="tableShowData" class="querytable"></table>
+    <div>
+        <table id="tableShowData" class="querytable"></table>
+    </div>
+    <div style="margin-top: 20px;">
+        <table id="errorInfoTable" class="querytable"></table>
+    </div>
     <!--添加修改内容-->
     <div id="newConfigWindow" class="easyui-window" title="修改/新建连接" collapsible="false" minimizable="false" maximizable="false" icon="icon-edit" style="width: 450px; height: 200px; padding: 5px;
         background: #fafafa;">
@@ -13,7 +18,14 @@
                 <table cellpadding=3>
                     <tr>
                         <td>数据库类型：</td>
-                        <td><input id="DbType" name="DbType" type="text" class="txt01 width-300" /></td>
+                        <td>
+                            <select id="DbType" class="easyui-combobox txt01" style="width: 300px" editable="false">
+                                <option value="0">不确定类型</option>
+                                <option value="1">SQLServer</option>
+                                <option value="2">MySQL</option>
+                            </select>
+                            <!--<input id="DbType" name="DbType" type="text" class="txt01 width-300"/>-->
+                        </td>
                     </tr>
                     <tr>
                         <td>连接名称：</td>
