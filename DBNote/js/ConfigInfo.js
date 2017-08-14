@@ -92,6 +92,7 @@ function Delete() {
                         msgShow('系统提示', '系统错误', 'error');
                     } else {
                         msgShow('系统提示', data.Des, 'info');
+                        ReloadData();
                     }
                 }, fail: function () {
                     msgShow('系统提示', '系统错误', 'error');
@@ -175,6 +176,7 @@ function serverInfo() {
                 $linkConnectionString.val('');
                 closePwd();
             }
+            ReloadData();
             msgShow('系统提示', data.Des, 'info');
         }, fail: function () {
             msgShow('系统提示', '系统错误', 'error');
@@ -195,4 +197,9 @@ function getSingleSelectedRow() {
 function getMoreSelectedRow() {
     var rowData = $('#tableShowData').datagrid('getSelections');
     return rowData;
+}
+
+//重新加载表格
+function ReloadData() {
+    $("#tableShowData").datagrid('reload');
 }
