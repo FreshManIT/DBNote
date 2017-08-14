@@ -38,7 +38,8 @@ namespace DBNote.Server
         /// <returns></returns>
         public static bool UpdateConfigModel(DataBaseLinkConfigModel newModel)
         {
-            return DataReader.UpdateConfigModel(newModel);
+            if (newModel == null || newModel.Id < 0) return false;
+            return newModel.Id < 1 ? DataReader.AddConfigModel(newModel) : DataReader.UpdateConfigModel(newModel);
         }
 
         /// <summary>

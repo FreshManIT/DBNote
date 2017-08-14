@@ -99,6 +99,19 @@ namespace DBNote.DataBase
         }
 
         /// <summary>
+        /// 插入实体
+        /// </summary>
+        /// <param name="newModel"></param>
+        /// <returns></returns>
+        public bool AddConfigModel(DataBaseLinkConfigModel newModel)
+        {
+            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLite);
+            var conn = SqlConnectionHelper.GetOpenConnection(ConnectionString);
+            var result = conn.Insert(newModel);
+            return result > 0;
+        }
+
+        /// <summary>
         /// 查询指定条件配置信息
         /// </summary>
         /// <param name="linkName"></param>
@@ -107,8 +120,8 @@ namespace DBNote.DataBase
         {
             SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLite);
             var conn = SqlConnectionHelper.GetOpenConnection(ConnectionString);
-            var result = conn.Get<DataBaseLinkConfigModel>($" where LinkName={linkName} ");
-            return result;
+            var result = conn.GetList<DataBaseLinkConfigModel>($" where LinkName='{linkName}' ");
+            return result.FirstOrDefault();
         }
 
         /// <summary>

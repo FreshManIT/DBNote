@@ -75,11 +75,17 @@ function initTable(pars) {
 //删除选中的行
 function Delete() {
     var rows = getMoreSelectedRow();
+    var data = {};
+    data.requestData = JSON.stringify(rows);
+    if (rows.length < 1) {
+        msgShow("系统提示", "请选择需要删除的行", "info");
+        return;
+    }
     $.messager.confirm('系统提示', '您确定要删除记录么?', function (r) {
         if (r) {
             $.ajax({
                 url: '/Home/DeleteConfig',
-                data: rows,
+                data: data,
                 type: 'POST',
                 success: function (data) {
                     if (!data) {
@@ -97,7 +103,25 @@ function Delete() {
 
 //更新数据
 function Update() {
-    msgShow('系统提示', '没有选中行~~', 'info');
+    var rows = getMoreSelectedRow();
+    if (rows.length > 1) {
+        msgShow('系统提示', '一次只能编辑一行。', 'info');
+        return;
+    }
+    if (rows.length < 1) {
+        msgShow('系统提示', '请选择需要编辑的行。', 'info');
+        return;
+    }
+    rows = getSingleSelectedRow();
+    var $dbType = $('#DbType');
+    var $linkName = $('#LinkName');
+    var $linkConnectionString = $("#LinkConnectionString");
+    var $configId = $("#configId");
+    $dbType.val(rows.DbType);
+    $linkName.val(rows.LinkName);
+    $linkConnectionString.val(rows.LinkConnectionString);
+    $configId.val(rows.Id);
+    $('#newConfigWindow').window('open');
 }
 
 //添加数据
@@ -116,6 +140,7 @@ function serverInfo() {
     var $dbType = $('#DbType');
     var $linkName = $('#LinkName');
     var $linkConnectionString = $("#LinkConnectionString");
+    var $configId = $("#configId");
 
     if ($dbType.val() == '') {
         msgShow('系统提示', '请输入数据库类型！', 'warning');
@@ -131,7 +156,7 @@ function serverInfo() {
         return false;
     }
     var data = {};
-    data.Id = $("#configId").val();
+    data.Id = $configId.val();
     data.LinkName = $linkName.val();
     data.DbType = $dbType.val();
     data.LinkConnectionString = $linkConnectionString.val();
@@ -142,9 +167,15 @@ function serverInfo() {
         success: function (data) {
             if (!data) {
                 msgShow('系统提示', '系统错误', 'error');
-            } else {
-                msgShow('系统提示', data.Des, 'info');
+                return;
+            } else if (data.Code == "0000") {
+                $configId.val(0);
+                $dbType.val(0);
+                $linkName.val('');
+                $linkConnectionString.val('');
+                closePwd();
             }
+            msgShow('系统提示', data.Des, 'info');
         }, fail: function () {
             msgShow('系统提示', '系统错误', 'error');
         }

@@ -478,6 +478,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="MyDatabase.sqlite" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\ShowTableInfo.cshtml" />
     <Content Include="Views\Shared\_DetailPage.cshtml" />

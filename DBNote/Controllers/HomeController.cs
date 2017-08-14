@@ -134,13 +134,20 @@ namespace DBNote.Controllers
                 Id = id,
                 LinkName = linkName
             };
-            var success = DataBaseConfigServer.UpdateConfigModel(model);
-
-            var result = new BaseResultModel
+            var result = new BaseResultModel();
+            if (model.Id < 1)
             {
-                Code = success ? "0000" : "0001",
-                Des = success ? "成功" : "失败"
-            };
+                var oldModel = DataBaseConfigServer.GetConfigModelByLinkName(model.LinkName);
+                if (oldModel != null && oldModel.Id > 0)
+                {
+                    result.Code = "0001";
+                    result.Des = "连接名称已被占用，请重新输入。";
+                    return Json(result);
+                }
+            }
+            var success = DataBaseConfigServer.UpdateConfigModel(model);
+            result.Code = success ? "0000" : "0001";
+            result.Des = success ? "成功" : "失败";
             return Json(result);
         }
     }
