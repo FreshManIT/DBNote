@@ -37,6 +37,11 @@ namespace DBNote.Models
         public string LinkName { get; set; }
 
         /// <summary>
+        /// 是否启用
+        /// </summary>
+        public IsEnableEnum IsEnable { get; set; }
+
+        /// <summary>
         /// 连接字符串
         /// </summary>
         public string LinkConnectionString { get; set; }
@@ -46,5 +51,11 @@ namespace DBNote.Models
         /// </summary>
         [NotMapped]
         public string DbTypeString => EnumHelper.GetDescriptionByEnum(DbType);
+
+        /// <summary>
+        /// 是否启用类型描述
+        /// </summary>
+        [NotMapped]
+        public string IsEnableString => EnumHelper.GetDescriptionByEnum(IsEnable);
     }
 }

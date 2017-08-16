@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Configuration;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.WebPages;
 using DBNote.Enum;
 using DBNote.Models;
 using DBNote.Server;
@@ -159,12 +155,14 @@ namespace DBNote.Controllers
             var linkName = System.Web.HttpContext.Current.GetStringFromParameters("LinkName");
             var dbType = System.Web.HttpContext.Current.GetIntFromParameters("DbType");
             var linkConnectionString = System.Web.HttpContext.Current.GetStringFromParameters("LinkConnectionString");
+            var isEnable = System.Web.HttpContext.Current.GetIntFromParameters("IsEnable");
             var model = new DataBaseLinkConfigModel
             {
                 DbType = EnumHelper.GetEnumByValue<DataBaseTypeEnum>(dbType),
                 LinkConnectionString = linkConnectionString,
                 Id = id,
-                LinkName = linkName
+                LinkName = linkName,
+                IsEnable = EnumHelper.GetEnumByValue<IsEnableEnum>(isEnable)
             };
             var result = new BaseResultModel();
             if (model.Id < 1)

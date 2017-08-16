@@ -38,7 +38,7 @@ namespace DBNote.Server
 
             if ((dataBaseType & DataBaseTypeEnum.SqlServer) == DataBaseTypeEnum.SqlServer)
             {
-                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.SqlServer);
+                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.SqlServer && f.IsEnable==IsEnableEnum.Enable);
                 if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
                 {
                     ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlDataBaseTableAccess(), DataBaseTypeEnum.SqlServer));
@@ -46,7 +46,7 @@ namespace DBNote.Server
             }
             if ((dataBaseType & DataBaseTypeEnum.MySql) == DataBaseTypeEnum.MySql)
             {
-                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.MySql);
+                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.MySql && f.IsEnable == IsEnableEnum.Enable);
                 if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
                 {
                     ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new MySqlDataAccess(), DataBaseTypeEnum.MySql));

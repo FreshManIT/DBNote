@@ -43,4 +43,22 @@ namespace DBNote.Enum
         [Description("Sqlite数据库")]
         Sqlite = 1 << 2,
     }
+
+    /// <summary>
+    /// 是否启用
+    /// </summary>
+    public enum IsEnableEnum
+    {
+        /// <summary>
+        /// 不启用
+        /// </summary>
+        [Description("禁用")]
+        UnEnable = 0,
+
+        /// <summary>
+        /// 不启用
+        /// </summary>
+        [Description("启用")]
+        Enable = 1 << 0
+    }
 }

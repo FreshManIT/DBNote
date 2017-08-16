@@ -36,12 +36,15 @@ function initTable(pars) {
                 { field: 'DbType', title: '数据库类型', width: 100 },
                 { field: 'DbTypeString', title: '数据库类型', width: 100 },
                 { field: 'LinkName', title: '连接名称', width: 150 },
+                { field: 'IsEnable', title: '状态', width: 30 },
+                { field: 'IsEnableString', title: '状态', width: 30 },
                 { field: 'LinkConnectionString', title: '连接地址' }
             ]
         ],
         onLoadSuccess: function () {
             $("#tableShowData").datagrid("hideColumn", "Id"); // 设置隐藏列
             $("#tableShowData").datagrid("hideColumn", "DbType"); // 设置隐藏列
+            $("#tableShowData").datagrid("hideColumn", "IsEnable"); // 设置隐藏列
         },
         //表头的按钮
         toolbar: [
@@ -100,7 +103,7 @@ function initErrorTable(pars) {
         columns: [
             [
                 { field: 'ErrorType', title: '错误类型', width: 300 },
-            { field: 'ErrorTime', title: '时间', width: 110 },
+                { field: 'ErrorTime', title: '时间', width: 110 },
                 { field: 'ErrorStack', title: '错误堆栈' }
             ]
         ]
@@ -149,11 +152,12 @@ function Update() {
     }
     rows = getSingleSelectedRow();
     var $dbType = $('#DbType');
+    var $isEnable = $('#IsEnable');
     var $linkName = $('#LinkName');
     var $linkConnectionString = $("#LinkConnectionString");
     var $configId = $("#configId");
     $dbType.combobox('setValue', rows.DbType);
-    //$dbType.val(rows.DbType);
+    $isEnable.combobox('setValue', rows.IsEnable);
     $linkName.val(rows.LinkName);
     $linkConnectionString.val(rows.LinkConnectionString);
     $configId.val(rows.Id);
@@ -174,6 +178,7 @@ function closePwd() {
 //修改配置信息
 function serverInfo() {
     var $dbType = $('#DbType');
+    var $isEnable = $('#IsEnable');
     var $linkName = $('#LinkName');
     var $linkConnectionString = $("#LinkConnectionString");
     var $configId = $("#configId");
@@ -195,6 +200,7 @@ function serverInfo() {
     data.Id = $configId.val();
     data.LinkName = $linkName.val();
     data.DbType = $dbType.combobox('getValue');
+    data.IsEnable = $isEnable.combobox('getValue');
     data.LinkConnectionString = $linkConnectionString.val();
     $.ajax({
         url: "/Home/UpdateOrAddConfig",
@@ -206,7 +212,8 @@ function serverInfo() {
                 return;
             } else if (data.Code == "0000") {
                 $configId.val(0);
-                $dbType.val(0);
+                $dbType.combobox('setValue', 0);
+                $isEnable.combobox('setValue', 0);
                 $linkName.val('');
                 $linkConnectionString.val('');
                 closePwd();

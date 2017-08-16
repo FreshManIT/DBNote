@@ -66,7 +66,8 @@ namespace DBNote.DataBase
                                             Id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                                             DbType  INTEGER,
                                             LinkName  TEXT,
-                                            LinkConnectionString  TEXT
+                                            LinkConnectionString  TEXT,
+                                            IsEnable INTEGER
                                             ); ");
 
             }

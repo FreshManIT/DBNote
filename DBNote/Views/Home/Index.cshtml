@@ -11,7 +11,7 @@
         <table id="errorInfoTable" class="querytable"></table>
     </div>
     <!--添加修改内容-->
-    <div id="newConfigWindow" class="easyui-window" title="修改/新建连接" collapsible="false" minimizable="false" maximizable="false" icon="icon-edit" style="width: 450px; height: 200px; padding: 5px;
+    <div id="newConfigWindow" class="easyui-window" title="修改/新建连接" collapsible="false" minimizable="false" maximizable="false" icon="icon-edit" style="width: 450px; height: 230px; padding: 5px;
         background: #fafafa;">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
@@ -24,7 +24,15 @@
                                 <option value="1">SQLServer</option>
                                 <option value="2">MySQL</option>
                             </select>
-                            <!--<input id="DbType" name="DbType" type="text" class="txt01 width-300"/>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>状态：</td>
+                        <td>
+                            <select id="IsEnable" class="easyui-combobox txt01" style="width: 300px" editable="false">
+                                <option value="0">禁用</option>
+                                <option value="1">启用</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
