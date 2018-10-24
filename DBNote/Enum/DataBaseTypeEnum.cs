@@ -42,6 +42,12 @@ namespace DBNote.Enum
         /// </summary>
         [Description("Sqlite数据库")]
         Sqlite = 1 << 2,
+
+        /// <summary>
+        /// Oracle数据库
+        /// </summary>
+        [Description("Oracle数据库")]
+        Oracle = 1 << 3,
     }
 
     /// <summary>

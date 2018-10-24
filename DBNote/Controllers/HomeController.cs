@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using DBNote.Enum;
@@ -8,6 +9,7 @@ using DBNote.Server;
 using FreshCommonUtility.Enum;
 using FreshCommonUtility.Web;
 using Newtonsoft.Json;
+using Oracle.ManagedDataAccess.Client;
 
 namespace DBNote.Controllers
 {
@@ -39,7 +41,7 @@ namespace DBNote.Controllers
         public ActionResult ShowTableInfo()
         {
             ViewBag.databaseName = System.Web.HttpContext.Current.GetStringFromParameters("datatableName");
-            ViewBag.tableName = System.Web.HttpContext.Current.GetStringFromParameters("tableName");
+            ViewBag.tableName = System.Web.HttpContext.Current.GetStringFromParameters("tableName").Replace("**", "#");
             ViewBag.type = System.Web.HttpContext.Current.GetStringFromParameters("type");
             var dbType = System.Web.HttpContext.Current.GetIntFromParameters("dbType");
             ViewBag.dbType = dbType;
@@ -56,6 +58,7 @@ namespace DBNote.Controllers
         {
             var databaseName = System.Web.HttpContext.Current.GetStringFromParameters("datatableName");
             var tableName = System.Web.HttpContext.Current.GetStringFromParameters("tableName");
+            tableName = tableName.Replace("**", "#");
             var type = System.Web.HttpContext.Current.GetStringFromParameters("type");
             var dbType = System.Web.HttpContext.Current.GetIntFromParameters("dbType");
             var dbTypeEnum = EnumHelper.GetEnumByValue<DataBaseTypeEnum>(dbType);

@@ -41,7 +41,7 @@ namespace DBNote.Server
                 var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.SqlServer && f.IsEnable==IsEnableEnum.Enable);
                 if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
                 {
-                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlDataBaseTableAccess(), DataBaseTypeEnum.SqlServer));
+                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlServerDataAccess(), DataBaseTypeEnum.SqlServer));
                 }
             }
             if ((dataBaseType & DataBaseTypeEnum.MySql) == DataBaseTypeEnum.MySql)
@@ -51,7 +51,14 @@ namespace DBNote.Server
                 {
                     ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new MySqlDataAccess(), DataBaseTypeEnum.MySql));
                 }
-
+            }
+            if((dataBaseType & DataBaseTypeEnum.Oracle) == DataBaseTypeEnum.Oracle)
+            {
+                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.Oracle && f.IsEnable == IsEnableEnum.Enable);
+                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                {
+                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new OracleDataAccess(), DataBaseTypeEnum.Oracle));
+                }
             }
         }
     }

@@ -880,6 +880,7 @@ a.m-btn-plain-active{
 }
 .panel-body-noborder{
 	border-width:0px;
+    overflow:hidden;
 }
 .panel-with-icon{
 	padding-left:18px;

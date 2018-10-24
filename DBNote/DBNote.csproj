@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,13 +47,11 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FreshCommonUtilityNet, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreshCommonUtilityNet.1.0.2.2\lib\net45\FreshCommonUtilityNet.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="FreshCommonUtilityNet, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreshCommonUtilityNet.1.2.0.0\lib\net45\FreshCommonUtilityNet.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\FreshCommonUtilityNet.1.2.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -78,6 +77,9 @@
     <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=1.1.608.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.1.1.608\lib\net45\StackExchange.Redis.dll</HintPath>
@@ -217,7 +219,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataBase\MySqlDataAccess.cs" />
-    <Compile Include="DataBase\SqlDataBaseTableAccess.cs" />
+    <Compile Include="DataBase\OracleDataAccess.cs" />
+    <Compile Include="DataBase\SqlServerDataAccess.cs" />
     <Compile Include="DataBase\SqlHelper.cs" />
     <Compile Include="DataBase\SqliteDataAccess.cs" />
     <Compile Include="Enum\DataBaseTypeEnum.cs" />
@@ -280,7 +283,6 @@
     <Content Include="js\locale\easyui-lang-zh_CN.js" />
     <Content Include="js\locale\easyui-lang-zh_TW.js" />
     <Content Include="js\outlook2.js" />
-    <Content Include="js\ShowTableInfo.js" />
     <Content Include="js\themes\default\accordion.css" />
     <Content Include="js\themes\default\calendar.css" />
     <Content Include="js\themes\default\combo.css" />
@@ -484,6 +486,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Home\ShowTableInfo.cshtml" />
     <Content Include="Views\Shared\_DetailPage.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

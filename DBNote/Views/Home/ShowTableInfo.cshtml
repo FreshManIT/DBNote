@@ -6,24 +6,23 @@
 
 <div class="accordion">
     <table id="tt" class="easyui-datagrid bgwhite" style="min-width: 850px;"
-           url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@(ViewBag.tableName)&type=@(ViewBag.type)&dbType=@(ViewBag.dbType)"
+           url="/Home/TableInfoJson?datatableName=@(ViewBag.databaseName)&tableName=@((ViewBag.tableName).ToString().Replace("#","**"))&type=@(ViewBag.type)&dbType=@(ViewBag.dbType)"
            title="数据库类型：@(ViewBag.dbTypeDescription) 名称：@(ViewBag.databaseName) 表名称：@(ViewBag.tableName)" iconCls="icon-database icon"
            toolbar="#tb" singleSelect="true">
         <thead>
             <tr>
                 <th field="Name" width="150">字段名称</th>
                 <th field="DataType" width="80">数据类型</th>
+                <th field="Length" width="50">长度</th>
                 <th field="DefaultValue" width="80">默认值</th>
                 <th field="DisplayName" width="150">展示名称</th>
                 <th field="HasDefault" width="150">是否有默认值</th>
                 <th field="IsAutoIncremented" width="100">是否自动增长</th>
                 <th field="IsNullable" width="100">是否可空</th>
-                <th field="Length" width="50">长度</th>
                 <th field="Comment" editor='numberbox'>备注</th>
             </tr>
         </thead>
     </table>
 </div>
 @section scripts{
-    <script src="../../js/ShowTableInfo.js"></script>
 }

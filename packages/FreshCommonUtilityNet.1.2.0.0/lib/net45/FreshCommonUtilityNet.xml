@@ -1,0 +1,3986 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FreshCommonUtilityNet</name>
+    </assembly>
+    <members>
+        <member name="T:FreshCommonUtility.Cache.RedisCacheHelper">
+            <summary>
+            Redis Link helper
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Cache.RedisCacheHelper.Connection">
+            <summary>
+            load redis connection object.
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Cache.RedisCacheHelper._currrentDatabaseNumber">
+            <summary>
+            Get Current database number.
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Cache.RedisCacheHelper.CurrentDatabaseNumber">
+            <summary>
+            Get Current database number.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.Exists(System.String,System.Int32)">
+            <summary>
+            Check cache key is exists.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:exists;false :non-existent</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ExistsAsync(System.String,System.Int32)">
+            <summary>
+            Check cache key is exists.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:exists;false :non-existent</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSet(System.String,System.Object,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSetAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSet(System.String,System.Object,System.TimeSpan,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <param name="expiressRelative">relative expire timestamp</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSetAsync(System.String,System.Object,System.TimeSpan,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="expiressRelative">relative expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSet(System.String,System.Object,System.DateTime,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="expiressAbsoulte">absoulte expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddSetAsync(System.String,System.Object,System.DateTime,System.Int32)">
+            <summary>
+            Add cache into set,the datatype is string.
+            </summary>
+            <param name="key">cache key.</param>
+            <param name="value">cache value</param>
+            <param name="expiressAbsoulte">absoulte expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:add success;false:fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddList(System.String,System.Object,System.Int32)">
+            <summary>
+            Add value to list.no-expired
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">object value</param>
+            <returns>the length of the list after the push operations</returns>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.AddListAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            Add value to list.no-expired
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">object value</param>
+            <returns>the length of the list after the push operations</returns>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.Get``1(System.String,System.Int32)">
+            <summary>
+            Get cache value,just for cache data type set,string.
+            </summary>
+            <typeparam name="T">Date type.</typeparam>
+            <param name="key">cache key.</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetAsync``1(System.String,System.Int32)">
+            <summary>
+            Get cache value,just for cache data type set,string.
+            </summary>
+            <typeparam name="T">Date type.</typeparam>
+            <param name="key">cache key.</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetLastOneList``1(System.String,System.Int32)">
+            <summary>
+            Get head last one object from list.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the value of the last element,or nil when key does not exist</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetLastOneListAsync``1(System.String,System.Int32)">
+            <summary>
+            Get head last one object from list.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the value of the last element,or nil when key does not exist</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetFirstOneList``1(System.String,System.Int32)">
+            <summary>
+            Removes and returns the first element of the list stored at key.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the value of the first element, or nil when key does not exist</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetFirstOneListAsync``1(System.String,System.Int32)">
+            <summary>
+            Removes and returns the first element of the list stored at key.
+            </summary>
+            <typeparam name="T">Data type</typeparam>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the value of the first element, or nil when key does not exist</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.Remove(System.String,System.Int32)">
+            <summary>
+            Remove key
+            </summary>
+            <param name="key">config key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.RemoveAsync(System.String,System.Int32)">
+            <summary>
+            Async remove key
+            </summary>
+            <param name="key">config key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetKeyDictionary(System.Collections.Generic.IEnumerable{System.String},System.Int32)">
+            <summary>
+            Get Enumerable collection
+            </summary>
+            <param name="keys">need keys collection</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>value of dictionary.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSet(System.String,System.Object,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSetAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSet(System.String,System.Object,System.TimeSpan,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="expiressRelative">relative expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSetAsync(System.String,System.Object,System.TimeSpan,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="expiressRelative">relative expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSet(System.String,System.Object,System.DateTime,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="expiressAbsoulte">absoulte expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.ReplaceSetAsync(System.String,System.Object,System.DateTime,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">value</param>
+            <param name="expiressAbsoulte">absoulte expire timestamp</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>true:Update Success;false:Update fail</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetListLength(System.String,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>Returns the length of the list stored at key. If key does not exist, it is interpreted as an empty list and 0 is returned.the length of the list at key.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetListLengthAsync(System.String,System.Int32)">
+            <summary>
+            Update set value.
+            </summary>
+            <param name="key">cache key</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>Returns the length of the list stored at key. If key does not exist, it is interpreted as an empty list and 0 is returned.the length of the list at key.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.RemoveValueList(System.String,System.Object,System.Int32)">
+            <summary>
+            Remove value to list.no-expired
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">object value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the number of removed elements.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.RemoveValueListAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            Remove value to list.no-expired
+            </summary>
+            <param name="key">cache key</param>
+            <param name="value">object value</param>
+            <param name="databaseNumber">data base number,if -1 will get default database number,others need you base number range.</param>
+            <returns>the number of removed elements.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetListRange``1(System.String,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            Get list range info.
+            </summary>
+            <typeparam name="T">type T</typeparam>
+            <param name="key">cache key</param>
+            <param name="start">start index,begin is zore.</param>
+            <param name="fail">the fail of list.</param>
+            <param name="databaseNumber">database number.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisCacheHelper.GetListRangeAsync``1(System.String,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            Get list range info.
+            </summary>
+            <typeparam name="T">type T</typeparam>
+            <param name="key">cache key</param>
+            <param name="start">start index,begin is zore.</param>
+            <param name="fail">the fail of list.</param>
+            <param name="databaseNumber">database number.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Cache.RedisConnectionHelper">
+            <summary>
+            FreshMan redis connection helper.Config redis link string key is :RedisConnectionString
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Cache.RedisConnectionHelper._conn">
+            <summary>
+            Return connection object.
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Cache.RedisConnectionHelper.SyncRoot">
+            <summary>
+            Lock resource
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisConnectionHelper.#ctor">
+            <summary>
+            cut put point.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Cache.RedisConnectionHelper.GetConnection">
+            <summary>
+            Get single connection object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedForeighKeyModel.ForeighKey">
+            <summary>
+            Deal str
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.CommonModel.ReferencedModel">
+            <summary>
+            Referenced model
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.ForeignKey">
+            <summary>
+            ForeignKey
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.TableName">
+            <summary>
+            Table name
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.ForeignKeyCell">
+            <summary>
+            table name key cell
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.ReferencedTableName">
+            <summary>
+            ReferencedTableName
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.ReferencedCell">
+            <summary>
+            ReferencedCell
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.CommonModel.ReferencedModel.ReferencedModelList">
+            <summary>
+            referenced table list
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Configure.AppConfigurationHelper">
+            <summary>
+            Get app config string helper.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.#cctor">
+            <summary>
+            construct function
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetString(System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的字符串类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetString(System.String,System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的字符串类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetStringArray(System.String,System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的string[]类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="separator">分隔符</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetStringArray(System.String,System.String,System.String[])">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的string[]类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="separator">分隔符</param>
+            <param name="defaultValue">默认值</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.getStringArray(System.String,System.String,System.Boolean,System.String[])">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的string[]类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="separator">分隔符</param>
+            <param name="valueRequired">指定配置文件中是否必须需要配置有该名称的元素，传入False则方法返回默认值，反之抛出异常</param>
+            <param name="defaultValue">默认值</param>
+            <returns>字符串数组</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetInt32(System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的Int类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <returns>Int</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetInt32(System.String,System.Int32)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的Int类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>Int</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.getInt32(System.String,System.Nullable{System.Int32})">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的Int类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>Int</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetBoolean(System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的布尔类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <returns>布尔值</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetBoolean(System.String,System.Boolean)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的布尔类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>布尔值</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.getBoolean(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的布尔类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>布尔值</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetTimeSpan(System.String)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的时间间隔类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <returns>时间间隔</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.GetTimeSpan(System.String,System.TimeSpan)">
+            <summary>
+            获取配置文件中appSettings节点下指定索引键的时间间隔类型的的值
+            </summary>
+            <param name="key">索引键</param>
+            <param name="defaultValue">默认值</param>
+            <returns>时间间隔</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.getValue``1(System.String,System.Func{System.String,``0,System.Boolean},System.Nullable{``0})">
+            <summary>
+            获取配置文件appSettings集合中指定索引的值
+            </summary>
+            <typeparam name="T">返回值类型参数</typeparam>
+            <param name="key">索引键</param>
+            <param name="parseValue">将指定索引键的值转化为返回类型的值的委托方法</param>
+            <param name="defaultValue">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Configure.AppConfigurationHelper.getValue(System.String,System.Boolean,System.String)">
+            <summary>
+            获取配置文件appSettings集合中指定索引的值
+            </summary>
+            <param name="key">索引</param>
+            <param name="valueRequired">指定配置文件中是否必须需要配置有该名称的元素，传入False则方法返回默认值，反之抛出异常</param>
+            <param name="defaultValue">默认值</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="P:FreshCommonUtility.Cookie.CookieHelper.ServerDomain">
+            <summary>
+            获取域名
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.GetCookies(System.String)">
+            <summary>
+            获取Cookie
+            </summary>
+            <param name="cookieName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.GetCookie(System.String)">
+            <summary>
+            获取Cookie
+            </summary>
+            <param name="cookieName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.GetCookie(System.String,System.String)">
+            <summary>
+            获取Cookie
+            </summary>
+            <param name="cookieName"></param>
+            <param name="valueName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.SetCookie(System.String,System.String)">
+            <summary>
+            添加一个Cookie（24小时过期）
+            </summary>
+            <param name="cookieName"></param>
+            <param name="cookieValue"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.SetCookie(System.String,System.String,System.DateTime,System.String)">
+            <summary>
+            添加一个Cookie
+            </summary>
+            <param name="cookieName">cookie名</param>
+            <param name="cookieValue">cookie值</param>
+            <param name="expires">过期时间 DateTime</param>
+            <param name="domain"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Cookie.CookieHelper.SetCookies(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.String,System.Nullable{System.DateTime})">
+            <summary>
+            设置2级Cookie
+            </summary>
+            <param name="cookieName"></param>
+            <param name="cookieValues"></param>
+            <param name="domain"></param>
+            <param name="expires"></param>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.ColumnAttribute">
+            <summary>
+            Optional Column attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the table name of a poco
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.ColumnAttribute.#ctor(System.String)">
+            <summary>
+            Optional Column attribute.
+            </summary>
+            <param name="columnName"></param>
+        </member>
+        <member name="P:FreshCommonUtility.Dapper.ColumnAttribute.Name">
+            <summary>
+            Name of the column
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.EditableAttribute">
+            <summary>
+            Optional Editable attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the properties that are editable
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.EditableAttribute.#ctor(System.Boolean)">
+            <summary>
+            Optional Editable attribute.
+            </summary>
+            <param name="iseditable"></param>
+        </member>
+        <member name="P:FreshCommonUtility.Dapper.EditableAttribute.AllowEdit">
+            <summary>
+            Does this property persist to the database?
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.IColumnNameResolver">
+            <summary>
+            Interface Column name resolver
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IColumnNameResolver.ResolveColumnName(System.Reflection.PropertyInfo)">
+            <summary>
+            resolve column name
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.IDealMoreOtherPart">
+            <summary>
+            deal more other self way part interface
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get disabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get enabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delete foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get recreat foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-5</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.IDealMoreOtherPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.IgnoreInsertAttribute">
+            <summary>
+            Optional IgnoreInsert attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Insert methods
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.IgnoreSelectAttribute">
+            <summary>
+            Optional IgnoreSelect attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Select methods
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.IgnoreUpdateAttribute">
+            <summary>
+            Optional IgnoreUpdate attribute.
+            Custom for Dapper.SimpleCRUD to exclude a property from Update methods
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.ITableNameResolver">
+            <summary>
+            Interface table name resolver
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.ITableNameResolver.ResolveTableName(System.Type)">
+            <summary>
+            table name resolver
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.KeyAttribute">
+            <summary>
+            Optional Key attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the Primary Key of a poco
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.MySqlPart">
+            <summary>
+            MySql part
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get disabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get enabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delete foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get recreat foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.MySqlPart._tableRefencedModelDictionary">
+            <summary>
+            Save table refenced model dictionary
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDeleteOrDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean,System.Int32)">
+            <summary>
+            Delete or drop table by name of table or view.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <param name="type">1:delete;0:drop</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete or drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetReferencedMap(System.Data.IDbConnection,System.String)">
+            <summary>
+            Citation Graph
+            </summary>
+            <param name="connection">connection</param>
+            <param name="databaseName">database name</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDeleteTableNameList(System.Data.IDbConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            get citation graph set.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table name</param>
+            <param name="historyDictionary">access link route</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.TraversingGraph(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Recursive completion of depth traversal graphs
+            </summary>
+            <param name="sourceDictionary">source node data</param>
+            <param name="nodeName">current node name</param>
+            <param name="historyDictionary">had access</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-5</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.MySqlPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.NotMappedAttribute">
+            <summary>
+            Optional NotMapped attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify that the property is not mapped
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.ReadOnlyAttribute">
+            <summary>
+            Optional Readonly attribute.
+            You can use the System.ComponentModel version in its place to specify the properties that are editable
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.ReadOnlyAttribute.#ctor(System.Boolean)">
+            <summary>
+            Optional ReadOnly attribute.
+            </summary>
+            <param name="isReadOnly"></param>
+        </member>
+        <member name="P:FreshCommonUtility.Dapper.ReadOnlyAttribute.IsReadOnly">
+            <summary>
+            Does this property persist to the database?
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.RequiredAttribute">
+            <summary>
+            Optional Key attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify a required property of a poco
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.SimpleCRUD">
+            <summary>
+            Main class for Dapper.SimpleCRUD extensions
+            </summary>
+            <summary>
+            Main class for Dapper.SimpleCRUD extensions
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.#cctor">
+            <summary>
+            Stuck function,default sql type is LocalDB
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._sqlBegin">
+            <summary>
+            Excuse begin
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._sqlEnd">
+            <summary>
+            Excuse end
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._preSqlParamer">
+            <summary>
+            pre SQL paramer
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._dialect">
+            <summary>
+            Default use SQLServer
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._encapsulation">
+            <summary>
+            Datatable prefix
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._getIdentitySql">
+            <summary>
+            Get insert last index
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._getPagedListSql">
+            <summary>
+            Select page data sql
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.TableNames">
+            <summary>
+            Tablename cache
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.ColumnNames">
+            <summary>
+            columnname cache
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._tableNameResolver">
+            <summary>
+            table name resolver
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._columnNameResolver">
+            <summary>
+            column name resolver
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD._dealMoreOtherPart">
+            <summary>
+            deal more other part
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDialect">
+            <summary>
+            Returns the current dialect name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetPreSqlParamer">
+            <summary>
+            Get _preSqlParamer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDialectString">
+            <summary>
+            Returns the current dialect name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.SetDialect(FreshCommonUtility.Dapper.SimpleCRUD.Dialect)">
+            <summary>
+            Sets the database dialect 
+            </summary>
+            <param name="dialect"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.SetTableNameResolver(FreshCommonUtility.Dapper.ITableNameResolver)">
+            <summary>
+            Sets the table name resolver
+            </summary>
+            <param name="resolver">The resolver to use when requesting the format of a table name</param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.SetColumnNameResolver(FreshCommonUtility.Dapper.IColumnNameResolver)">
+            <summary>
+            Sets the column name resolver
+            </summary>
+            <param name="resolver">The resolver to use when requesting the format of a column name</param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Get``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>By default filters on the Id column</para>
+            <para>-Id column name can be overridden by adding an attribute on your primary key property [Key]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a single entity by a single id from table T</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a single entity by a single id from table T.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetList``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetList``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause and/or order by clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional SQL where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetList``1(System.Data.IDbConnection)">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a list of all entities</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <returns>Gets a list of all entities</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetListPaged``1(System.Data.IDbConnection,System.Int32,System.Int32,System.String,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>orderby is a column or list of columns to order by ex: "lastname, age desc" - not required - default is by primary key</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="pageNumber"></param>
+            <param name="rowsPerPage"></param>
+            <param name="conditions"></param>
+            <param name="orderby"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a paged list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Insert``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Insert``2(System.Data.IDbConnection,``1,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database, using ONLY the properties defined by TEntity</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Update``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Updates a record or records in the database with only the properties of TEntity</para>
+            <para>By default updates records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Updates records where the Id property and properties with the [Key] attribute match those in the database.</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns number of rows effected</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToUpdate"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of effected records</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Delete``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database that match the object passed in</para>
+            <para>-By default deletes records in the table matching the class name</para>
+            <para>Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the number of records effected</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="entityToDelete"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.Delete``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database by ID</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where the Id property and properties with the [Key] attribute match those in the database</para>
+            <para>The number of records effected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteList``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>The number of records effected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteList``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.RecordCount``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a number of records entity by a single id from table T</para>
+            <para>Supports transaction and command timeout</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.RecordCount``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a number of records entity by a single id from table T</para>
+            <para>Supports transaction and command timeout</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get disabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get enabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delete foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get recreat foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-5</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.BuildUpdateSet``1(``0,System.Text.StringBuilder)">
+            <summary>
+            build update statement based on list on an entity
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entityToUpdate"></param>
+            <param name="sb"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.BuildSelect(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+            build select clause based on list of properties skipping ones with the IgnoreSelect and NotMapped attribute
+            </summary>
+            <param name="sb"></param>
+            <param name="props"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.BuildWhere``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo},``0,System.Object)">
+            <summary>
+            match up generic properties to source entity properties to allow fetching of the column attribute
+            the anonymous object used for search doesn't have the custom attributes attached to them so this allows us to build the correct where clause
+            by converting the model type to the database column name via the column attribute
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sb"></param>
+            <param name="idProps"></param>
+            <param name="sourceEntity"></param>
+            <param name="whereConditions"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.BuildInsertValues``1(System.Text.StringBuilder)">
+            <summary>
+            build insert values which include all properties in the class that are:
+            Not named Id
+            Not marked with the Editable(false) attribute
+            Not marked with the[Key] attribute(without required attribute)
+            Not marked with[IgnoreInsert]
+            Not marked with[NotMapped]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sb"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.BuildInsertParameters``1(System.Text.StringBuilder)">
+            <summary>
+            build insert parameters which include all properties in the class that are not:
+            marked with the Editable(false) attribute
+            marked with the[Key] attribute
+            marked with[IgnoreInsert]
+            named Id
+            marked with[NotMapped]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sb"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetAllProperties``1(``0)">
+            <summary>
+            Get all properties in an entity
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetScaffoldableProperties``1">
+            <summary>
+            Get all properties that are not decorated with the Editable(false) attribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.IsEditable(System.Reflection.PropertyInfo)">
+            <summary>
+            <para>Determine if the Attribute has an AllowEdit key and return its boolean state</para>
+            <para>fake the funk and try to mimick EditableAttribute in System.ComponentModel.DataAnnotations</para>
+            <para>This allows use of the DataAnnotations property in the model and have the SimpleCRUD engine just figure it out without a reference</para>
+            </summary>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.IsReadOnly(System.Reflection.PropertyInfo)">
+            <summary>
+            <para>        Determine if the Attribute has an IsReadOnly key and return its boolean state fake the funk and try to mimick ReadOnlyAttribute in System.ComponentModel This allows use of the DataAnnotations property in the model and have the SimpleCRUD engine just figure it out without a reference</para>
+            </summary>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetUpdateableProperties``1(``0)">
+            <summary>
+            Get all properties that are:
+            Not named Id
+            Not marked with the Key attribute
+            Not marked ReadOnly
+            Not marked IgnoreInsert
+            Not marked NotMapped
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.SequentialGuid">
+            <summary>
+            Generates a guid based on the current date/time
+            http://stackoverflow.com/questions/1752004/sequential-guid-generator-c-sharp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.SimpleCRUD.Dialect">
+            <summary>
+            Database server dialects
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.Dialect.SQLServer">
+            <summary>
+            SQL Server
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.Dialect.MySQL">
+            <summary>
+            MySQL
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.Dialect.SQLite">
+            <summary>
+            SQLite
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SimpleCRUD.Dialect.Oracle">
+            <summary>
+            Oracle
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.SimpleCRUD.TableNameResolver">
+            <summary>
+            table name resolver
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.TableNameResolver.ResolveTableName(System.Type)">
+            <summary>
+            table name resolver
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.SimpleCRUD.ColumnNameResolver">
+            <summary>
+            column name resolver
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.ColumnNameResolver.ResolveColumnName(System.Reflection.PropertyInfo)">
+            <summary>
+            resolve column name
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetAsync``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name asynchronously </para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>By default filters on the Id column</para>
+            <para>-Id column name can be overridden by adding an attribute on your primary key property [Key]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a single entity by a single id from table T</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a single entity by a single id from table T.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetListAsync``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name asynchronously</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetListAsync``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause and/or order by clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional SQL where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetListAsync``1(System.Data.IDbConnection)">
+            <summary>
+            <para>By default queries the table matching the class name asynchronously</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a list of all entities</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <returns>Gets a list of all entities</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.GetListPagedAsync``1(System.Data.IDbConnection,System.Int32,System.Int32,System.String,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>orderby is a column or list of columns to order by ex: "lastname, age desc" - not required - default is by primary key</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            <para>Returns a list of entities that match where conditions</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="pageNumber"></param>
+            <param name="rowsPerPage"></param>
+            <param name="conditions"></param>
+            <param name="orderby"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Gets a list of entities with optional exact match where conditions</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.InsertAsync``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database asynchronously</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the int? type, otherwise null</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.InsertAsync``2(System.Data.IDbConnection,``1,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Inserts a row into the database, using ONLY the properties defined by TEntity</para>
+            <para>By default inserts into the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Insert filters out Id column and any columns with the [Key] attribute</para>
+            <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</para>
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The ID (primary key) of the newly inserted record if it is identity using the defined type, otherwise null</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.UpdateAsync``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+             <para>Updates a record or records in the database asynchronously</para>
+             <para>By default updates records in the table matching the class name</para>
+             <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+             <para>Updates records where the Id property and properties with the [Key] attribute match those in the database.</para>
+             <para>Properties marked with attribute [Editable(false)] and complex types are ignored</para>
+             <para>Supports transaction and command timeout</para>
+             <para>Returns number of rows effected</para>
+             </summary>
+             <param name="connection"></param>
+             <param name="entityToUpdate"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <param name="token"></param>
+            <returns>The number of effected records</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteAsync``1(System.Data.IDbConnection,``0,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database that match the object passed in asynchronously</para>
+            <para>-By default deletes records in the table matching the class name</para>
+            <para>Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Supports transaction and command timeout</para>
+            <para>Returns the number of records effected</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="entityToDelete"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteAsync``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a record or records in the database by ID asynchronously</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where the Id property and properties with the [Key] attribute match those in the database</para>
+            <para>The number of records effected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="id"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteListAsync``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            <para>The number of records effected</para>
+            <para>Supports transaction and command timeout</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.DeleteListAsync``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>Deletes a list of records in the database</para>
+            <para>By default deletes records in the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Deletes records where that match the where clause</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age"</para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>The number of records effected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.RecordCountAsync``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>conditions is an SQL where clause ex: "where name='bob'" or "where age>=@Age" - not required </para>
+            <para>parameters is an anonymous type to pass in named parameter values: new { Age = 15 }</para>   
+            <para>Supports transaction and command timeout</para>
+            /// </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="conditions"></param>
+            <param name="parameters"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SimpleCRUD.RecordCountAsync``1(System.Data.IDbConnection,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32})">
+            <summary>
+            <para>By default queries the table matching the class name</para>
+            <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+            <para>Returns a number of records entity by a single id from table T</para>
+            <para>Supports transaction and command timeout</para>
+            <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connection"></param>
+            <param name="whereConditions"></param>
+            <param name="transaction"></param>
+            <param name="commandTimeout"></param>
+            <returns>Returns a count of records.</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.DapperExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.DapperExtension.Map``3(Dapper.SqlMapper.GridReader,System.Func{``0,``2},System.Func{``1,``2},System.Action{``0,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            
+            </summary>
+            <param name="reader"></param>
+            <param name="firstKey"></param>
+            <param name="secondKey"></param>
+            <param name="addChildren"></param>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.SqlServerPart">
+            <summary>
+            SQLServer part
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get disabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get enabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delete foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get recreat foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:FreshCommonUtility.Dapper.SqlServerPart._tableRefencedModelDictionary">
+            <summary>
+            Save table refenced model dictionary
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDeleteOrDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean,System.Int32)">
+            <summary>
+            Delete or drop table by name of table or view.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <param name="type">1:delete;0:drop</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete or drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetReferencedMap(System.Data.IDbConnection)">
+            <summary>
+            Citation Graph
+            </summary>
+            <param name="connection">connection</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDeleteTableNameList(System.Data.IDbConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            get citation graph set.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table name</param>
+            <param name="historyDictionary">access link route</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.TraversingGraph(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Recursive completion of depth traversal graphs
+            </summary>
+            <param name="sourceDictionary">source node data</param>
+            <param name="nodeName">current node name</param>
+            <param name="historyDictionary">had access</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-5</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.BulkCopy(System.Data.IDbConnection,System.String,System.Data.DataTable,System.Int32)">
+            <summary> 
+            insert large data
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">tablename</param>
+            <param name="dt">the same sturction of datatable</param>
+            <param name="timeOut">time out</param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.BulkCopy(System.Data.IDbConnection,System.Data.DataTable,System.Int32)">
+            <summary>
+            insert large data
+            </summary>
+            <param name="connection">connection</param>
+            <param name="dt">the same sturction of datatable</param>
+            <param name="timeOut">time out</param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.BulkCopy(System.Data.IDbConnection,System.Data.DataSet,System.Int32)">
+            <summary>
+            insert large data
+            </summary>
+            <param name="connection">connection</param>
+            <param name="ds">Table's set,every one have the same as db table struction,Table's name is DB table name</param>
+            <param name="timeOut">time out</param>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.SqlServerPart.BulkCopy(System.Data.IDbConnection,System.Collections.Generic.List{System.Data.DataTable},System.Int32)">
+            <summary>
+            insert large data
+            </summary>
+            <param name="connection">connection</param>
+            <param name="ds">Table's set,every one have the same as db table struction,Table's name is DB table name</param>
+            <param name="timeOut">time out</param>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.TableAttribute">
+            <summary>
+            Optional Table attribute.
+            You can use the System.ComponentModel.DataAnnotations version in its place to specify the table name of a poco
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.TableAttribute.#ctor(System.String)">
+            <summary>
+            Optional Table attribute.
+            </summary>
+            <param name="tableName"></param>
+        </member>
+        <member name="P:FreshCommonUtility.Dapper.TableAttribute.Name">
+            <summary>
+            Name of the table
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Dapper.TableAttribute.Schema">
+            <summary>
+            Name of the schema
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Dapper.TypeExtension">
+            <summary>
+            Type extension
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dapper.TypeExtension.IsSimpleType(System.Type)">
+            <summary>
+            You can't insert or update complex types. Lets filter them out.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.DataTypeConvertHelper">
+            <summary>
+            Data convert
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToBool(System.Object)">
+            <summary>
+            convert to bool
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToByte(System.Object)">
+            <summary>
+            转换成byte
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToByte(System.Object,System.Byte)">
+            <summary>
+            转换成byte
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToByteNullable(System.Object)">
+            <summary>
+            转换成byte?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDateTime(System.Object)">
+            <summary>
+            转换成DateTime，转换失败返回1900-1-1
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDateTimeNullable(System.Object)">
+            <summary>
+            转换成DateTime?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDateTime(System.Object,System.DateTime)">
+            <summary>
+            转换为DateTime
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultValue">返回的默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDateTime(System.Object,System.DateTime,System.String)">
+            <summary>
+             根据数据日期类型 转化日期
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultValue"></param>
+            <param name="dateFormat">输入日期格式 比如  yyyyMMdd</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDecimal(System.Object)">
+            <summary>
+            转换成decimal 默认保留2位小数点
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDecimal(System.Object,System.Int32)">
+            <summary>
+            转换成decimal
+            </summary>
+            <param name="val"></param>
+            <param name="decimals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDecimal(System.Object,System.Decimal,System.Int32)">
+            <summary>
+            转换成decimal
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <param name="decimals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDecimalNullable(System.Object)">
+            <summary>
+            转换成decimal?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDouble(System.Object)">
+            <summary>
+            转换成double 默认保留2位小数点
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDouble(System.Object,System.Int32)">
+            <summary>
+            转换成double
+            </summary>
+            <param name="val"></param>
+            <param name="digits"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDouble(System.Object,System.Double,System.Int32)">
+            <summary>
+            转换成double
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <param name="digits"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDoubleNullable(System.Object)">
+            <summary>
+            转换成double?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToFloat(System.Object)">
+            <summary>
+            转换成float 默认保留2位小数点
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToFloat(System.Object,System.Single)">
+            <summary>
+            转换成float
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToFloatNullable(System.Object)">
+            <summary>
+            转换成float?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToInt(System.Object)">
+            <summary>
+            转换成int
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToInt(System.Object,System.Int32)">
+            <summary>
+            转换成int
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToIntNullable(System.Object)">
+            <summary>
+            转换成int?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToLong(System.Object)">
+            <summary>
+            转换成long
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToLong(System.Object,System.Int64)">
+            <summary>
+            转换成long
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToLongNullable(System.Object)">
+            <summary>
+            转换成long?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToSbyte(System.Object)">
+            <summary>
+            转换成sbyte
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToSbyte(System.Object,System.SByte)">
+            <summary>
+            转换成sbyte
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToSbyteNullable(System.Object)">
+            <summary>
+            转换成sbyte?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToShort(System.Object)">
+            <summary>
+            转换成short
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToShort(System.Object,System.Int16)">
+            <summary>
+            转换成short
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToShortNullable(System.Object)">
+            <summary>
+            转换成short?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToString(System.Object)">
+            <summary>
+            转换成string
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToString(System.Object,System.String)">
+            <summary>
+            转换成string
+            </summary>
+            <param name="val"></param>
+            <param name="replace"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToStringNullable(System.Object)">
+            <summary>
+            转换成string
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUint(System.Object)">
+            <summary>
+            转换成uint
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUint(System.Object,System.UInt32)">
+            <summary>
+            转换成uint
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUintNullable(System.Object)">
+            <summary>
+            转换成uint?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUshort(System.Object)">
+            <summary>
+            转换成ushort
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUshort(System.Object,System.UInt16)">
+            <summary>
+            转换成ushort
+            </summary>
+            <param name="val"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToUshortNullable(System.Object)">
+            <summary>
+            转换成ushort?
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToWeekByDate(System.DateTime)">
+            <summary>
+            根据日期获取星期几
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToWeekDescByDate(System.DateTime)">
+            <summary>
+            根据日期获取周几
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ConvertHttpToHttps(System.String)">
+            <summary>
+            http协议转化成Https协议  实例：http:// to  https://
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.StringsToInts(System.String[])">
+            <summary>
+            string类型数组转化为int类型数组
+            </summary>
+            <param name="strs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.StringToListInt(System.String,System.Char)">
+            <summary>
+                把string转化成listint
+            </summary>
+            <param name="value"></param>
+            <param name="separator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ListIntToString(System.Collections.Generic.List{System.Int32},System.Char,System.String)">
+            <summary>
+            把List转化成string类型
+            </summary>
+            <param name="valList">字符串</param>
+            <param name="separator">分隔符</param>
+            <param name="nDefault">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ConvertStrToEncrypt(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            字符串加*
+            </summary>
+            <param name="str">数据源</param>
+            <param name="leftLength">左边取值</param>
+            <param name="rightLength">右边取值</param>
+            <param name="encryptType">加密字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityToKeyValuePairs``1(System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String}},``0)">
+            <summary>
+            实体转化成键值对信息
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="listPara"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToChinese(System.Int32,System.Boolean)">
+            <summary>
+            数字转化成汉字的方法
+            </summary>
+            <param name="n">数字</param>
+            <param name="fang">是否返回繁体字</param>
+            <returns></returns>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.PyValue">
+            <summary>
+            一级汉字对应编码
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.PyName">
+            <summary>
+            对应拼音
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.OtherChinese">
+            <summary>
+            二级汉字数组
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.OtherPinYin">
+            <summary>
+            二级汉字对应拼音数组
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.FirstChCode">
+            <summary>
+             GB2312-80 标准规范中第一个汉字的机内码.即"啊"的机内码
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.LastChCode">
+            <summary>
+            GB2312-80 标准规范中最后一个汉字的机内码.即"齄"的机内码
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DataConvert.DataTypeConvertHelper.LastOfOneLevelChCode">
+            <summary>
+            GB2312-80 标准规范中最后一个一级汉字的机内码.即"座"的机内码
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetFirstLetterPinyin(System.Char)">
+            <summary>
+            取第一个拼音字母
+            </summary>
+            <param name="ch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetEachFirstLetterPinyin(System.String)">
+            <summary>
+            取每个字的第一个拼音字母
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetSingWordPinyin(System.Char)">
+            <summary>
+            获取单字拼音
+            </summary>
+            <param name="ch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetFullPinyin(System.String)">
+            <summary>
+            把汉字转换成拼音(全拼)
+            </summary>
+            <param name="str">汉字字符串</param>
+            <returns>转换后的拼音(全拼)字符串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToModel``1(System.Data.DataRow)">
+            <summary>
+            DataRow转实体
+            </summary>
+            <typeparam name="T">数据型类</typeparam>
+            <param name="dr">DataRow</param>
+            <returns>模式</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToEntity``1(System.Data.DataTable)">
+            <summary>
+            DataTable 转化为对象
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToEntity``1(System.Data.IDataReader)">
+            <summary>
+            IDataReader转化为对象
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToList``1(System.Data.IDataReader)">
+            <summary>
+            IDataReader 转化为对象集合
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToListSlowly``1(System.Data.DataTable)">
+            <summary>
+            <para>表格转集合</para>
+            <para>DataTable中的列名称自动匹配TResult"/>中的属性</para>
+            <para>当数据量大于100时，请用<see cref="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToListFast``1(System.Data.DataTable)"/></para>
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="dt"></param>
+            <author>FreshMan</author>
+            <creattime>2017-06-26</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToListFast``1(System.Data.DataTable)">
+            <summary>
+            <para>表格转集合</para>
+            <para>当数据量小于100是，请用<see cref="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToListSlowly``1(System.Data.DataTable)"/></para>
+            <para>如果数据类型错误异常<see cref="T:System.ArgumentException"/></para>
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="table"></param>
+            <author>FreshMan</author>
+            <creattime>2017-06-26</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToList``1(System.Data.DataTable)">
+            <summary>
+            <para>表格转集合</para>
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="table"></param>
+            <author>FreshMan</author>
+            <creattime>2017-06-29</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDynamicList(System.Data.DataTable)">
+            <summary>
+            获取动态类型数据集合
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDynamic(System.Data.DataTable)">
+            <summary>
+            获取动态类型数据集合
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.FastMap``2(``1)">
+            <summary>
+            把source实体对象中的数据按（同名同类型的属性）规则复制到TTarget类型的新实体对象
+            </summary>
+            <typeparam name="TTarget">目标实体类型</typeparam>
+            <typeparam name="TSource">源实体类型</typeparam>
+            <param name="source">源实体对象</param>
+            <returns>目标实体对象</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.FastMap``2(``0,``1)">
+            <summary>
+            把source实体对象中的数据按（同名同类型的属性）规则复制到target实体对象
+            </summary>
+            <typeparam name="TTarget">目标实体类型</typeparam>
+            <typeparam name="TSource">源实体类型</typeparam>
+            <param name="target">目标实体对象</param>
+            <param name="source">源实体对象</param>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetEntityDifference``1(``0,``0)">
+            <summary>
+            获取两个实体的属性间的不同值，返回不同内容描述
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="source">原实体</param>
+            <param name="target">目的实体</param>
+            <returns>不同内容描述</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.SecureReaderGetValue(System.Data.IDataReader,System.String,System.Type)">
+            <summary>
+            get data reader values of column
+            </summary>
+            <param name="dataReader">interface dataTeader</param>
+            <param name="name">column name</param>
+            <param name="type">data type</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDataTableSlowly``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            <para>集合转化为表格</para>
+            <para>T中应该只包含值类型，对应的DataTable自动匹配列名相同的属性</para>
+            <para>当数据量大于100时，请用<see cref="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDataTable``1(System.Collections.Generic.IEnumerable{``0})"/></para>
+            </summary>
+            <typeparam name="T">类型中不应该包含有引用类型</typeparam>
+            <param name="entityList">转换的集合</param> 
+            <author>FreshMan</author>
+            <creattime>2017-06-26</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.CreateTable``1(System.String)">
+            <summary>
+            <para>创建表格</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tableName"></param>
+            <author>FreshMan</author>
+            <creattime>2017-06-26</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDataTable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            <para>Creates a DataTable from an IEnumerable</para>
+            <para>当数据量小于100时，请用<see cref="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.ToDataTableSlowly``1(System.Collections.Generic.IList{``0})"/></para>
+            </summary>
+            <typeparam name="TSource">The Generic type of the Collection</typeparam>
+            <param name="collection"></param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.CreateDataTable``1">
+            <summary>
+            使用泛型类型创建一个同样字段名的DataTable结构
+            </summary>
+            <typeparam name="TSource">泛型类型</typeparam>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.AddTableColumn(System.Data.DataTable,System.Reflection.MemberInfo,System.Type)">
+            <summary>
+            只将值类型和string类型添加一列到DataTable中
+            </summary>
+            <param name="dt">DataTable</param>
+            <param name="sourceMember">列对象</param>
+            <param name="memberType">列类型</param>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetFieldNameAttribute(System.Reflection.MemberInfo)">
+            <summary>
+            获取Field特性，如果存在
+            </summary>
+            <param name="member">MemberInfo</param>
+            <returns>String</returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.MemberMatchesName(System.Reflection.MemberInfo,System.String)">
+            <summary>
+            检测字段名称或者设置的field特性名称是否匹配
+            </summary>
+            <param name="member">The Member of the Instance to check</param>
+            <param name="name">The Name to compare with</param>
+            <returns>True if Fields match</returns>
+            <remarks>FieldNameAttribute takes precedence over TargetMembers name.</remarks>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.GetSourceValueExpression(System.Linq.Expressions.ParameterExpression,System.Reflection.MemberInfo)">
+            <summary>
+            创建表达式
+            </summary>
+            <param name="sourceInstanceExpression"></param>
+            <param name="sourceMember"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.CreateDataRowMapper``1(System.Data.DataTable)">
+            <summary>
+            创建一个委托，该TSource的实例映射到一个提供数据表的ItemArray
+            </summary>
+            <typeparam name="TSource">The Generic Type to map from</typeparam>
+            <param name="dt">The DataTable to map to</param>
+            <returns>Func(Of TSource, Object())</returns>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.DataTypeConvertHelper.DataRowMapperCache`1">
+            <summary>
+            添加缓存
+            </summary>
+            <typeparam name="TSource"></typeparam>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.DataTypeConvertHelper.DataTableCreator`1">
+            <summary>
+            创建实体对应的DataTable结构
+            </summary>
+            <typeparam name="TSource"></typeparam>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityUtilCache`1">
+            <summary>
+            entity util cache class
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityUtilCache`1.InternalGetEmitInvoker">
+            <summary>
+            Get emit invoker delegate.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityUtilCache`1.InternalGeneratorEmitInvoker(System.Reflection.Emit.ILGenerator)">
+            <summary>
+            Make dynamic method
+            </summary>
+            <param name="il"></param>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityUtilCache`1.InternalGetGetEntityDifferenceInvoker">
+            <summary>
+            Deal difference IL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTypeConvertHelper.EntityUtilCache`1.InternalGeneratorGetEntityDifferenceInvoker(System.Reflection.Emit.ILGenerator)">
+            <summary>
+            Deal difference IL
+            </summary>
+            <param name="il"></param>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.FormatAttribute">
+            <summary>
+            Char format attribute
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.DataConvert.FormatAttribute.Format">
+            <summary>
+            string.format("格式化",obj)  比如：日期格式化：{0:yyyy-MM-dd}
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.FormatAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="format"></param>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.NonCompareDifferenceAttribute">
+            <summary>
+            non join compare difference attribute
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.FieldNameAttribute">
+            <summary>
+            Field name attribute
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.DataConvert.FieldNameAttribute.FieldName">
+            <summary>
+            别名
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.FieldNameAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="fieldName"></param>
+        </member>
+        <member name="T:FreshCommonUtility.DataConvert.DataTableEntityBuilder`1">
+            <summary>
+            Create change delegate
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTableEntityBuilder`1.Build(System.Data.DataRow)">
+            <summary>
+            
+            </summary>
+            <param name="dataRecord"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DataConvert.DataTableEntityBuilder`1.CreateBuilder(System.Data.DataRow)">
+            <summary>
+            Create builder method.
+            </summary>
+            <param name="dataRecord"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.DeepCopy.DeepCopyHelper">
+            <summary>
+            Deep copy helper
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.DeepCopy.DeepCopyHelper.Identity">
+            <summary>
+            Cache struct
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DeepCopy.DeepCopyHelper._methods1">
+            <summary>
+            缓存对象复制的方法
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.DeepCopy.DeepCopyHelper._methods2">
+            <summary>
+            缓存对象复制的方法
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.GetSettableFields(System.Type)">
+            <summary>
+            Get settable fiedls
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.CreateCloneMethod1(System.Type,System.Collections.Generic.Dictionary{FreshCommonUtility.DeepCopy.DeepCopyHelper.Identity,System.Object})">
+            <summary>
+            Create clone method function
+            </summary>
+            <param name="type"></param>
+            <param name="objects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.CreateCloneMethod2(System.Type,System.Collections.Generic.Dictionary{FreshCommonUtility.DeepCopy.DeepCopyHelper.Identity,System.Object})">
+            <summary>
+            Create clone action
+            </summary>
+            <param name="type"></param>
+            <param name="objects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.CopyImpl``1(``0,System.Collections.Generic.Dictionary{FreshCommonUtility.DeepCopy.DeepCopyHelper.Identity,System.Object})">
+            <summary>
+            Copy Set type
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="source"></param>
+            <param name="objects"></param>
+            <author>FreshMan</author>
+            <creattime>2017-07-03</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.DeepCopy``1(``0)">
+            <summary>
+            Deep copy object all of field
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="source"></param>
+            <author>FreshMan</author>
+            <creattime>2017-07-03</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.DeepCopy``1(``0,``0)">
+            <summary>  
+            source property copy to target
+            <typeparam name="TEntity"></typeparam>
+            <param name="source">source data</param> 
+            <param name="target">target type</param>
+            <author>FreshMan</author>
+            <creattime>2017-07-03</creattime>
+            </summary>  
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.DeepCopyRecursion(System.Object)">
+            <summary>
+            Recursion DeepCopy object
+            </summary>
+            <param name="srcobj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.DeepCopyGenericType(System.Object)">
+            <summary>
+            Deep copy generic
+            </summary>
+            <param name="srcGeneric"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.DeepCopy.DeepCopyHelper.DeepCopyArray(System.Array)">
+            <summary>
+            Deep copy array set.
+            </summary>
+            <param name="srcArray"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Dynamic.DynamicDataEntity">
+            <summary>
+            动态实体类
+            </summary>
+            <summary>
+            动态实体类
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Dynamic.DynamicDataEntity._objEntity">
+            <summary>
+            内置集合参数
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Dynamic.DynamicDataEntity.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+            <summary> 
+            Provides the implementation of getting a member.  Derived classes can override
+            this method to customize behavior.  When not overridden the call site requesting the 
+            binder determines the behavior. 
+            </summary>
+            <param name="binder">The binder provided by the call site.</param> 
+            <param name="result">The result of the get operation.</param>
+            <returns>true if the operation is complete, false if the call site should determine behavior.</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Dynamic.DynamicDataEntity.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+            <summary> 
+            Provides the implementation of setting a member.  Derived classes can override
+            this method to customize behavior.  When not overridden the call site requesting the
+            binder determines the behavior.
+            </summary> 
+            <param name="binder">The binder provided by the call site.</param>
+            <param name="value">The value to set.</param> 
+            <returns>true if the operation is complete, false if the call site should determine behavior.</returns> 
+        </member>
+        <member name="M:FreshCommonUtility.Dynamic.DynamicDataEntity.GetDynamicMemberNames">
+            <summary>
+             返回所有动态成员的Name的列表
+            </summary>
+            <returns>动态成员名称的列表</returns>
+        </member>
+        <member name="P:FreshCommonUtility.Dynamic.DynamicDataEntity.Item(System.String)">
+            <summary>
+            通过动态类型的成员名称获取值
+            </summary>
+            <param name="name">成员的名称</param>
+            <returns>该成员的值,key不存在时返回null</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Email.EmailHelper">
+            <summary>
+            Email helper.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Email.EmailHelper.SendEmail(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Send email method.
+            </summary>
+            <param name="toEmailAddress">send to email address.</param>
+            <param name="subject">email subject.</param>
+            <param name="message">send email content,txt or html boy,if html body ,you should set isHtmlBody param is true.</param>
+            <param name="toName">send to email name,could by null,if null will use default string.</param>
+            <param name="isHtmlBody">flag the send email </param>
+        </member>
+        <member name="M:FreshCommonUtility.Email.EmailHelper.SendEmailAsync(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Send email method.
+            </summary>
+            <param name="toEmailAddress">send to email address.</param>
+            <param name="subject">email subject.</param>
+            <param name="message">send email content,txt or html boy,if html body ,you should set isHtmlBody param is true.</param>
+            <param name="toName">send to email name,could by null,if null will use default string.</param>
+            <param name="isHtmlBody">flag the send email </param>
+        </member>
+        <member name="M:FreshCommonUtility.Email.EmailHelper.IsEmailAddress(System.String)">
+            <summary>
+            Chech email address.
+            </summary>
+            <param name="emailAddress">email address.</param>
+            <returns>this email address is valid.</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Enum.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetEnumDescription(System.Enum)">
+            <summary>
+            获得枚举值的Description特性的值，一般是消息的搜索码
+            </summary>
+            <param name="value">要查找特性的枚举值</param>
+            <returns>返回查找到的Description特性的值，如果没有，就返回.ToString()</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetEnumDataList``1">
+            <summary>
+            获取枚举的数据源
+            </summary>
+            <returns>数据源</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetDescriptionByValue``1(System.Int32)">
+            <summary>
+            通过枚举获取描述信息
+            </summary>
+            <param name="value">枚举字段 </param>
+            <returns>描述信息</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetDescriptionByName``1(System.String)">
+            <summary>
+            通过枚举获取描述信息
+            </summary>
+            <param name="name">枚举字段 </param>
+            <returns>描述信息</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetDescriptionByEnum``1(``0)">
+            <summary>
+            通过枚举获取描述信息
+            </summary>
+            <param name="enumInstance">枚举</param>
+            <returns>描述信息</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetDescriptionByEnum(System.Enum)">
+            <summary>
+            通过枚举获取描述信息
+            </summary>
+            <param name="enumInstance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetEnumByValue``1(System.Int32)">
+            <summary>
+            通过枚举值得到枚举
+            </summary>
+            <param name="value">枚举值</param>
+            <returns>枚举</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.GetEnumByName``1(System.String)">
+            <summary>
+            通过枚举值得到枚举
+            </summary>
+            <param name="name">枚举值</param>
+            <returns>枚举</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.TryToEnum``1(System.Object,``0@)">
+            <summary>
+            尝试转换枚举，失败则返回false
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="parsed"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Enum.EnumHelper.EnumUtilData`1">
+            <summary>
+            内部实现类，缓存
+            </summary>
+            <typeparam name="TEnum">枚举类型</typeparam>
+        </member>
+        <member name="F:FreshCommonUtility.Enum.EnumHelper.EnumUtilData`1.EnumDataList">
+            <summary>
+            缓存数据
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Enum.EnumHelper.EnumUtilData`1.InitData">
+            <summary>
+            初始化数据，生成枚举和描述的数据表
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Enum.EnumHelper.EnumDataModel">
+            <summary>
+            枚举数据实体
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Enum.EnumHelper.EnumDataModel.Name">
+            <summary>
+            get or set 枚举名称
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Enum.EnumHelper.EnumDataModel.Value">
+            <summary>
+            get or set 枚举值
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Enum.EnumHelper.EnumDataModel.Description">
+            <summary>
+            get or set 枚举描述
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Image.ImagePosition">
+            <summary>
+            水印位置
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Image.ImagePosition.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Image.ImagePosition.LeftTop">
+            <summary>
+            左上
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Image.ImagePosition.LeftBottom">
+            <summary>
+            左下
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Image.ImagePosition.RightTop">
+            <summary>
+            右上
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Image.ImagePosition.RigthBottom">
+            <summary>
+            右下
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtility.Image.ImageHelper">
+            <summary>
+            图片处理
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Image.ImageHelper.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,System.String,System.Boolean,System.Int32)">
+            <summary>
+             生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param>
+            <param name="mode">生成缩略图的方式</param>	
+            <param name="isaddwatermark">是否添加水印</param>	
+            <param name="quality">图片品质</param>	
+        </member>
+        <member name="M:FreshCommonUtility.Image.ImageHelper.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,System.String,System.Boolean,FreshCommonUtility.Image.ImagePosition,System.String,System.Int32)">
+            <summary>
+            生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param>
+            <param name="mode">生成缩略图的方式</param>	
+            <param name="isaddwatermark">是否添加水印</param>	
+            <param name="quality">图片品质</param>	
+            <param name="imagePosition">水印位置</param>	
+            <param name="waterImage">水印图片名称</param>	
+        </member>
+        <member name="T:FreshCommonUtility.Map.FastMapHelper`2">
+            <summary>
+            快速匹配两个对象，浅复制
+            </summary>
+            <typeparam name="TIn"></typeparam>
+            <typeparam name="TOut"></typeparam>
+        </member>
+        <member name="F:FreshCommonUtility.Map.FastMapHelper`2.Cache">
+            <summary>
+            只生成一次函数
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Map.FastMapHelper`2.GetFunc">
+            <summary>
+            快速匹配
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Map.FastMapHelper`2.FastMap(`0)">
+            <summary>
+            快速匹配对象
+            </summary>
+            <param name="tIn"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.ExpandMath.BigInt">
+            <summary>
+            Big int 
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.ExpandMath.BigInt.IntegerMultiply(System.String,System.String)">
+            <summary>
+            Integer multiply
+            </summary>
+            <param name="num1"></param>
+            <param name="num2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Npoi.NpoiHelper">
+            <summary>
+            NPOI文件解析类
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <param name="fileName">指定文件路径:绝对路径</param>
+        </member>
+        <member name="F:FreshCommonUtility.Npoi.NpoiHelper._fileName">
+            <summary>
+            指定文件路径:绝对路径
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Npoi.NpoiHelper._workbook">
+            <summary>
+            工作文件
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Npoi.NpoiHelper._fs">
+            <summary>
+            文件流读取
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.DataTableToExcel(System.Data.DataTable,System.String,System.Boolean)">
+            <summary>
+            将DataTable数据导入到excel中
+            </summary>
+            <param name="data">要导入的数据</param>
+            <param name="sheetName">要导入的excel的sheet的名称</param>
+            <param name="isColumnWritten">DataTable的列名是否要导入</param>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <returns>导入数据行数(包含列名那一行)</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.ExcelToDataTable(System.String,System.Boolean,System.String@)">
+            <summary>
+            将excel中的数据导入到DataTable中
+            </summary>
+            <param name="sheetName">excel工作薄sheet的名称</param>
+            <param name="isFirstRowColumn">第一行是否是DataTable的列名</param>
+            <param name="errorMessage">异常信息</param>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <returns>返回的DataTable</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.ExcelToDataTable(System.Int32,System.Boolean,System.String@)">
+            <summary>
+            将excel中的数据导入到DataTable中
+            </summary>
+            <param name="sheetIndex">excel工作薄sheet的索引位置（从0开始）</param>
+            <param name="isFirstRowColumn">第一行是否是DataTable的列名</param>
+            <param name="errorMessage">异常信息</param>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <returns>返回的DataTable</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.GetExcelSheetsNumber(System.String)">
+            <summary>
+            获得excel
+            </summary>
+            <param name="filePath">文件绝对路径</param>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <returns>excel中的工作表（sheet）数量</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.ExcelToDataSet(System.Boolean)">
+            <summary>
+            excel导入DataSet中
+            </summary>
+            <param name="isFirstRowColumn">第一行是否是DataTable的列名</param>
+            <author>FreshMan</author>
+            <creattime>2015-11-19</creattime>
+            <returns>excel中的每一个sheet作为一个DataTable添加到DataSet中并返回</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.ExportExcelByDataSet(System.Data.DataSet,System.String,System.String)">
+            <summary>	
+            传入ds直接生成excel文件	
+            </summary>	
+            <param name="ds">DataSet</param>	
+            <param name="strPath">文件路径</param>	
+            <param name="reportHeader">execl表头</param>	
+            <returns></returns>	
+        </member>
+        <member name="M:FreshCommonUtility.Npoi.NpoiHelper.ReadExcelToDataSet(System.IO.Stream,System.Int32)">
+            <summary>
+            用NPOI直接读取excel返回DataSet
+            </summary>
+            <param name="excelFileStream">FileStream fs = File.Open(dlg.FileName, FileMode.Open);</param>
+            <param name="sheetCount">sheet数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.RegExp.RegExpHelper">
+            <summary>
+            正则
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsEmail(System.String)">
+            <summary>
+            是否电子邮件
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsIp(System.String)">
+            <summary>
+            是否Ip
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsNumeric(System.String)">
+            <summary>
+            是否整数
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsLeftZeroNumeric(System.String)">
+            <summary>
+            是否是负整数
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsPhysicalPath(System.String)">
+            <summary>
+            是否绝对路径
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsRelativePath(System.String)">
+            <summary>
+            是否相对路径
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsSafety(System.String)">
+            <summary>
+            是否安全字符串，例如包含"slect insert"等注入关键字
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsUnicode(System.String)">
+            <summary>
+            是否是汉字
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.RegExp.RegExpHelper.IsUrl(System.String)">
+            <summary>
+            是否URL地址
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Security.DesHelper">
+            <summary>
+            Des secret helper.
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Security.DesHelper.Keys">
+            <summary>
+            默认密钥向量 
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Security.DesHelper._privateKey">
+            <summary>
+            默认私钥
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.DesHelper.DesEnCode(System.String,System.String)">
+            <summary> 
+            DES加密字符串 
+            </summary> 
+            <param name="encryptString">待加密的字符串</param> 
+            <param name="encryptKey">加密密钥,要求为16位</param> 
+            <returns>加密成功返回加密后的字符串，失败返回源串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.DesHelper.DesDeCode(System.String,System.String)">
+            <summary> 
+            DES解密字符串 
+            </summary> 
+            <param name="decryptString">待解密的字符串</param>
+            <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param>
+            <returns>解密成功返回解密后的字符串，失败返源串</returns>
+        </member>
+        <member name="T:FreshCommonUtility.Security.IdCardNumber">
+            <summary>
+            解析身份证
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.Province">
+            <summary>
+            所在省份信息
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.Area">
+            <summary>
+            所在地区信息
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.City">
+            <summary>
+            所在区县信息
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.Sex">
+            <summary>
+            性别，0为女，1为男
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.CardNumber">
+            <summary>
+            身份证号码
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.Security.IdCardNumber.Json">
+            <summary>
+            生成Javascript对象；
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardNumber._analysis">
+            <summary>
+            解析身份证
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardNumber.#ctor(System.String)">
+            <summary>
+            构造函数解析身份证号
+            </summary>
+            <param name="idCardNumber"></param>
+        </member>
+        <member name="T:FreshCommonUtility.Security.IdCardValidatorHelper">
+            <summary>
+            身份证验证帮助类
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Security.IdCardValidatorHelper.Areas">
+            <summary>
+            地区数据集合
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.FillAreas">
+            <summary>
+            获取区域信息
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.CheckIdCard18(System.String)">
+            <summary>
+            18位身份证号码验证
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.CheckIdCard15(System.String)">
+            <summary>
+            16位身份证号码验证
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.CheckIdCard(System.String)">
+            <summary>
+            验证身份证合理性
+            </summary>
+            <param name="idNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.GetIdCardCheckCode(System.String)">
+            <summary>
+            获取新身份证最后一位校验位
+            </summary>
+            <param name="idCard">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.CheckIdCardLen(System.String)">
+            <summary>
+            检查身份证长度是否合法
+            </summary>
+            <param name="idCard">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.IsNewIdCard(System.String)">
+            <summary>
+            验证是否是新身份证
+            </summary>
+            <param name="idCard">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.GetBirthday(System.String)">
+            <summary>
+            获取身份证生日时间
+            </summary>
+            <param name="idCardNo">身份证号码</param>
+            <returns>生日字符串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.GetSexByIdCard(System.String,System.DateTime@,System.Boolean)">
+            <summary>
+            根据身份证号获得性别
+            </summary>
+            <param name="idNumber">身份证号</param>
+            <param name="borthday">生日</param>
+            <param name="mastCheck">是否需要身份证号码检测，默认不检测</param>
+            <returns>1：男；0：女；-1：身份证解析错误</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.RadomProductCardNumbers">
+            <summary>
+            随机生成一个身份证号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper.RadomProductCardNumbers(System.Int32)">
+            <summary>
+            批量生成身份证
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.IdCardValidatorHelper._radomCardNumber(System.Int32)">
+            <summary>
+            生成随身份证号
+            </summary>
+            <param name="seed">随机数种子</param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Security.RandomHelper">
+            <summary>
+            随机数生成
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.RandomHelper.GetRandomNo(System.Int32,System.String)">
+            <summary>
+            获取随机码
+            </summary>
+            <param name="randomLen"></param>
+            <param name="randomChars"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.RandomHelper.GetRandomNo(System.Int32)">
+            <summary>
+            混合随机数 ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789  其中字母O去除掉，容易和数字0 混淆客户不好辨认
+            </summary>
+            <param name="randomLen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.RandomHelper.GetRandomLetterNo(System.Int32)">
+            <summary>
+            字母随机数 ABCDEFGHIJKLMNOPQRSTUVWXYZ
+            </summary>
+            <param name="randomLen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.RandomHelper.GetRandomNumbersNo(System.Int32)">
+            <summary>
+            数字随机数 0123456789
+            </summary>
+            <param name="randomLen"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Security.AesHelper">
+            <summary>
+            AES加密解密
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Security.AesHelper.SECRET">
+            <summary>
+            加密密钥
+            </summary>
+        </member>
+        <member name="F:FreshCommonUtility.Security.AesHelper.Offset">
+            <summary>
+            加密偏移量
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Security.AesHelper.AesEncrypt(System.String,System.String,System.String)">
+            <summary>AES加密方法 128位加密</summary>
+            <param name="text">明文</param>
+            <param name="key">密钥,长度为16的字符串</param>
+            <param name="iv">偏移量,长度为16的字符串</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.AesHelper.AesDecrypt(System.String,System.String,System.String)">
+            <summary>AES解密</summary>
+            <param name="text">密文</param>
+            <param name="key">密钥,长度为16的字符串</param>
+            <param name="iv">偏移量,长度为16的字符串</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.AesHelper.HexStrToByte(System.String)">
+            <summary>
+            字符串转16进制字节数组
+            </summary>
+            <param name="hexString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Security.AesHelper.ByteToHexStr(System.Byte[])">
+            <summary>
+            字节数组转16进制字符串
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.SqlHelper.SqlConnectionHelper">
+            <summary>
+            <para>Sql connection helper class.Use this helper class must first use InitConnectionServer function.</para>
+            <para>config sql link string key:SqlConnectionString</para>
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtility.SqlHelper.SqlConnectionHelper.ConnectionString">
+            <summary>
+            Get connection string.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlConnectionHelper.#cctor">
+            <summary>
+            cut put point.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlConnectionHelper.GetMySqlConnectionConnection(System.String)">
+            <summary>
+            Get single MySQL connection object
+            </summary>
+            <param name="connectionString">you need new connection object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlConnectionHelper.GetConnectionString">
+            <summary>
+            Get connection string.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlConnectionHelper.GetOpenConnection(System.String)">
+            <summary>
+            <para>Get open connection</para>
+            <para>if you want to link mysql db,please add SslMode=None; in you link string.</para>
+            <para>MySQL link string eg:Server=127.0.0.1;Port=3306;User Id=test;Password=test;Database=testDb;SslMode=None</para>
+            <para>Oracle link string eg:Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=test)));Persist Security Info=True;User ID=test;Password=test;</para>
+            <para>SQLServer link string eg:Data Source = (localdb)\MSSQLLocalDB;Initial Catalog=DapperSimpleCrudTestDb;Integrated Security=True;MultipleActiveResultSets=true;</para>
+            <para>SQLite link string eg:Data Source=MyDatabase.sqlite;Version=3;</para>
+            </summary>
+            <param name="connectionString">DIV you connection string</param>
+            <returns>IDbConection object</returns>
+        </member>
+        <member name="T:FreshCommonUtility.SqlHelper.SqlHelper">
+            <summary>
+            MySql helper.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.ExcuteNonQuery(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            增、删、改同步操作
+             </summary>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">链接字符串</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.ExcuteNonQueryAsync(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            增、删、改异步操作
+            </summary>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">链接字符串</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.ExecuteScalar(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            同步查询操作
+            </summary>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.ExecuteScalarAsync(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            异步查询操作
+            </summary>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.FindOne``1(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            同步查询一条数据
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>t</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.FindOneAsync``1(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            异步查询一条数据
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>t</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.FindToList``1(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            同步查询数据集合
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>t</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.FindToListAsync``1(System.String,Dapper.DynamicParameters,System.Boolean,System.String)">
+            <summary>
+            异步查询数据集合
+            </summary>
+            <typeparam name="T">实体</typeparam>
+            <param name="cmd">sql语句</param>
+            <param name="param">参数</param>
+            <param name="flag">true存储过程，false sql语句(default)</param>
+            <param name="connection">连接字符串</param>
+            <returns>t</returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.SearchPageList``1(System.String,System.String,System.String,System.String,System.Int32,System.Int32,Dapper.DynamicParameters,System.Int64@,System.String,System.String)">
+            <summary>
+            search page data,slowly.e.g:long sqlint;
+            var param = new DynamicParameters();
+            param.Add("id",1);
+            var pagedata = fhelper.SearchPageList<PiFUsersModel />("pifusers", "and id=@id", null, "*", 0, 1, param, out sqlint);
+            </summary>
+            <param name="tbName">table name</param>
+            <param name="strWhere">where case</param>
+            <param name="orderBy">order field.</param>
+            <param name="fieldList">search field</param>
+            <param name="pageIndex">current page number</param>
+            <param name="pageSize">page size</param>
+            <param name="param">params.</param>
+            <param name="allCount">all count number.</param>
+            <param name="groupby">group by</param>
+            <param name="connectionstring">connection string.</param>
+            <returns>page data</returns>
+        </member>
+        <!-- 对于成员“M:FreshCommonUtility.SqlHelper.SqlHelper.SearchPageListAsync``1(System.String,System.String,System.String,System.String,System.Int32,System.Int32,Dapper.DynamicParameters,System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.SearchPageListHigh``1(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.Int64@,Dapper.DynamicParameters,System.String)">
+            <summary>
+            search page data,high.e.g:long sqlint;
+            </summary>
+            var param = new DynamicParameters();
+            param.Add("id",1);
+            var pagedata = fhelper.SearchPageList<PiFUsersModel/>("pifusers", "and id=@id", null, "*", 0, 1, param, out sqlint);
+            <typeparam name="T"></typeparam>
+            <param name="tbName">table name</param>
+            <param name="strWhere">where case(begin and)</param>
+            <param name="orderBy">order filed</param>
+            <param name="fieldList">search field</param>
+            <param name="primaryKey">primary key for imporove speed</param>
+            <param name="pageIndex">page index</param>
+            <param name="pageSize">page size</param>
+            <param name="allCount">all count data row</param>
+            <param name="param">params</param>
+            <param name="connectionstring">connection database string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.SqlHelper.SqlHelper.SearchPageListHighAsync``1(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32,Dapper.DynamicParameters,System.String)">
+            <summary>
+            Async search page data,high.e.g:long sqlint;
+            var param = new DynamicParameters();
+            param.Add("id",1);
+            var pagedata = fhelper.SearchPageList<PiFUsersModel/>("pifusers", "and id=@id", null, "*", 0, 1, param, out sqlint);
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tbName">table name</param>
+            <param name="strWhere">where case(begin and)</param>
+            <param name="orderBy">order filed</param>
+            <param name="fieldList">search field</param>
+            <param name="primaryKey">primary key for imporove speed</param>
+            <param name="pageIndex">page index</param>
+            <param name="pageSize">page size</param>
+            <param name="param">params</param>
+            <param name="connectionstring">connection database string.</param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Web.FilterHtmlHelper">
+            <summary>
+            Html标签过滤
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Web.FilterHtmlHelper.NoHtml(System.String)">
+            <summary>
+            去除HTML标记
+            </summary> 
+        </member>
+        <member name="M:FreshCommonUtility.Web.FilterHtmlHelper.StripHtml(System.String)">
+            <summary>
+            去除脚本代码
+            </summary>
+            <param name="strHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.FilterHtmlHelper.GetImgUrl(System.String)">
+            <summary> 
+            取出文本中的图片地址 
+            </summary> 
+            <param   name="htmlStr">htmlStr</param> 
+        </member>
+        <member name="T:FreshCommonUtility.Web.WebHttpHelper">
+            <summary>
+            web http helper
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.HttpGetAsync(System.String,System.Text.Encoding)">
+            <summary>
+            Async get http data.
+            </summary>
+            <param name="url">request url.</param>
+            <param name="encoding">encoding type.</param>
+            <returns>Get url data result is string</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.HttpGet(System.String,System.Text.Encoding)">
+            <summary>
+            Get http data.
+            </summary>
+            <param name="url">request url.</param>
+            <param name="encoding">encoding type.</param>
+            <returns>Get url data result is string</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.HttpPostAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.Encoding,System.Int32)">
+            <summary>
+            Async post data to url.
+            </summary>
+            <param name="url">request url</param>
+            <param name="formData">formData,the key is string ,value is object,but the best choose if int or string</param>
+            <param name="encoding">encoding default(UTF8)</param>
+            <param name="timeOut">http request timeout.</param>
+            <returns>response data of string</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.HttpPost(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Text.Encoding,System.Int32)">
+            <summary>
+            Post data to url.
+            </summary>
+            <param name="url">request url</param>
+            <param name="formData">formData,the key is string ,value is object,but the best choose if int or string</param>
+            <param name="encoding">encoding default(UTF8)</param>
+            <param name="timeOut">http request timeout.</param>
+            <returns>response data of string</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.GetQueryString(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            <para>组装QueryString的方法</para>
+            <para>参数之间用and连接，首位没有符号，如：a=1 and b=2 and c=3</para>
+            </summary>
+            <param name="formData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.FillFormDataStream(System.Collections.Generic.Dictionary{System.String,System.Object},System.IO.Stream)">
+            <summary>
+            填充表单信息的Stream
+            </summary>
+            <param name="formData"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.HttpsPost(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Net.Cookie})">
+            <summary>
+            Post https request
+            </summary>
+            <param name="url">URL</param>
+            <param name="postData">post data</param>
+            <param name="cookies">cookies</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebHttpHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Validation check method
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Web.WebRequestHelper">
+            <summary>
+            WebRequest extend
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebRequestHelper.IsNumeric(System.String)">
+            <summary>
+            验证字符串是否为数字（正则表达式）（true = 是数字, false = 不是数字）
+            </summary>
+            <param name="validatedString">被验证的字符串</param>
+            <returns>true = 是数字, false = 不是数字</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebRequestHelper.GetStringFromParameters(System.Web.HttpContext,System.String)">
+            <summary>
+            Get Querystring or Request.From params,you also can define params in method param use [FromBody]Type params string.
+            </summary>
+            <param name="context">request context</param>
+            <param name="key">params key</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebRequestHelper.GetIntFromParameters(System.Web.HttpContext,System.String)">
+            <summary>
+            Get Querystring or Request.From params,you also can define params in method param use [FromBody]Type params int.
+            </summary>
+            <param name="context">request context</param>
+            <param name="key">params key</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebRequestHelper.GetDateTimeFromParameters(System.Web.HttpContext,System.String)">
+            <summary>
+            Get Querystring params of DateTime type.
+            </summary>
+            <param name="context">request context</param>
+            <param name="key">params key</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtility.Web.WebRequestHelper.GetListIntFromParameters(System.Web.HttpContext,System.String,System.Char)">
+            <summary>
+            Get collection of int.
+            </summary>
+            <param name="context">request context</param>
+            <param name="key">params key</param>
+            <param name="separator">split char</param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtility.Zip.ZipHelper">
+            <summary>
+            压缩，解压缩帮助类
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtility.Zip.ZipHelper.GZipCompressString(System.String)">
+            <summary>
+            将传入字符串以GZip算法压缩后，返回Base64编码字符  
+            </summary>
+            <param name="rawString">需要压缩的字符串</param>
+            <returns>压缩后的Base64编码的字符串</returns>
+        </member>
+        <member name="M:FreshCommonUtility.Zip.ZipHelper.GZipDecompressString(System.String)">
+            <summary>  
+            将传入的二进制字符串资料以GZip算法解压缩  
+            </summary>  
+            <param name="zippedString">经GZip压缩后的二进制字符串</param>  
+            <returns>原始未压缩字符串</returns>  
+        </member>
+        <member name="M:FreshCommonUtility.Zip.ZipHelper.Compress(System.Byte[])">
+            <summary>
+            GZip压缩
+            </summary>
+            <param name="rawData"></param>  
+            <returns></returns>  
+        </member>
+        <member name="M:FreshCommonUtility.Zip.ZipHelper.Decompress(System.Byte[])">
+            <summary>
+            ZIP解压
+            </summary>
+            <param name="zippedData"></param>  
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtilityNet.CommonModel.SqliteMasterModel">
+            <summary>
+            sqlite sqliteMaster model
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtilityNet.CommonModel.SqliteMasterModel.Type">
+            <summary>
+            Type
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtilityNet.CommonModel.SqliteMasterModel.Name">
+            <summary>
+            name
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtilityNet.CommonModel.SqliteMasterModel.TblName">
+            <summary>
+            tbl_name
+            </summary>
+        </member>
+        <member name="P:FreshCommonUtilityNet.CommonModel.SqliteMasterModel.Sql">
+            <summary>
+            sql
+            </summary>
+        </member>
+        <member name="T:FreshCommonUtilityNet.Dapper.OraclePart">
+            <summary>
+            Oracle part info.
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get disabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get enabled foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delete foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get recreat foreign key sql
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:FreshCommonUtilityNet.Dapper.OraclePart._tableRefencedModelDictionary">
+            <summary>
+            Save table refenced model dictionary
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDeleteOrDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean,System.Int32)">
+            <summary>
+            Delete or drop table by name of table or view.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <param name="type">1:delete;0:drop</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete or drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetReferencedMap(System.Data.IDbConnection)">
+            <summary>
+            Citation Graph
+            </summary>
+            <param name="connection">connection</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDeleteTableNameList(System.Data.IDbConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            get citation graph set.
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table name</param>
+            <param name="historyDictionary">access link route</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.TraversingGraph(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Recursive completion of depth traversal graphs
+            </summary>
+            <param name="sourceDictionary">source node data</param>
+            <param name="nodeName">current node name</param>
+            <param name="historyDictionary">had access</param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Drop table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>drop table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableName">table or view name</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-5</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.OraclePart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Delete table or view by name
+            </summary>
+            <param name="connection">connection</param>
+            <param name="tableNameList">table or view name set</param>
+            <param name="dataBase">Database name,default value is current link database</param>
+            <param name="isView">is view? true | false(default value)</param>
+            <author>FreshMan</author>
+            <creattime>2017-09-06</creattime>
+            <returns>delete table or view sql command</returns>
+        </member>
+        <member name="T:FreshCommonUtilityNet.Dapper.SqlitePart">
+            <summary>
+            SQLite part
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDisabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            get disabled foreignkey sql
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetEnabledForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            get enable foreign key sql
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDeleteForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            Get delte foreign key sql
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetReCreatForeignKeySql(System.Data.IDbConnection)">
+            <summary>
+            get recreat foreign key sql
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Get drop datatable sql by name
+            </summary>
+            <param name="connection"></param>
+            <param name="tableName"></param>
+            <param name="dataBase"></param>
+            <param name="isView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDropDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Get drop datatable sql by name
+            </summary>
+            <param name="connection"></param>
+            <param name="tableNameList"></param>
+            <param name="dataBase"></param>
+            <param name="isView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.String,System.String,System.Boolean)">
+            <summary>
+            Get drop datatable sql by name
+            </summary>
+            <param name="connection"></param>
+            <param name="tableName"></param>
+            <param name="dataBase"></param>
+            <param name="isView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Dapper.SqlitePart.GetDeleteDataTableSqlByName(System.Data.IDbConnection,System.Collections.Generic.List{System.String},System.String,System.Boolean)">
+            <summary>
+            Get drop datatable sql by name
+            </summary>
+            <param name="connection"></param>
+            <param name="tableNameList"></param>
+            <param name="dataBase"></param>
+            <param name="isView"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FreshCommonUtilityNet.Security.ShaHelper">
+            <summary>
+            Sha加密方法
+            </summary>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Security.ShaHelper.Sha1(System.String)">
+            <summary>
+            Sha1 加密，返回大写字符串
+            </summary>
+            <param name="content">需要加密字符串</param>
+            <returns>返回40位UTF8 大写</returns>
+        </member>
+        <member name="M:FreshCommonUtilityNet.Security.ShaHelper.Sha1(System.String,System.Text.Encoding)">
+            <summary>
+            Sha1 加密，返回大写字符串
+            </summary>
+            <param name="content">需要加密字符串</param>
+            <param name="encode">指定加密编码</param>
+            <returns>返回40位大写字符串</returns>
+        </member>
+    </members>
+</doc>

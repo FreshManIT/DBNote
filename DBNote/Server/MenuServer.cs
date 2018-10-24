@@ -9,6 +9,7 @@
 //======================================================================
 #endregion
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace DBNote.Server
         /// <returns></returns>
         public static MenuModel GetMenuInfo()
         {
-            var serverAdapter = new ServerAdapter(DataBaseTypeEnum.MySql | DataBaseTypeEnum.SqlServer);
+            var serverAdapter = new ServerAdapter(DataBaseTypeEnum.MySql | DataBaseTypeEnum.SqlServer | DataBaseTypeEnum.Sqlite | DataBaseTypeEnum.Oracle);
             if (serverAdapter.ServerList == null || !serverAdapter.ServerList.Any()) return null;
 
             var resultMenu = new ConcurrentBag<MenuModel>();
@@ -43,18 +44,25 @@ namespace DBNote.Server
                     dbList.ForEach(f =>
                     {
                         var childMenu = new List<MenuModel>();
-                        var tables = baseserver1.DbBaseTableAccess.GetTableList(baseserver1.ConnectionString, f.Name);
-                        var views = baseserver1.DbBaseTableAccess.GetViews(baseserver1.ConnectionString, f.Name);
-                        if (tables != null && tables.Any())
+                        try
                         {
-                            childMenu.AddRange(tables.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name}&type=table&dbType={baseserver.CurrentDataBaseTypeEnum.GetHashCode()}" }).ToList());
-                        }
+                            var tables = baseserver1.DbBaseTableAccess.GetTableList(baseserver1.ConnectionString, f.Name);
+                            var views = baseserver1.DbBaseTableAccess.GetViews(baseserver1.ConnectionString, f.Name);
+                            if (tables != null && tables.Any())
+                            {
+                                childMenu.AddRange(tables.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name.Replace("#", "**")}&type=table&dbType={baseserver.CurrentDataBaseTypeEnum.GetHashCode()}" }).ToList());
+                            }
 
-                        if (views != null && views.Any())
-                        {
-                            childMenu.AddRange(views.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name}&type=view&dbType={baseserver.CurrentDataBaseTypeEnum.GetHashCode()}" }).ToList());
+                            if (views != null && views.Any())
+                            {
+                                childMenu.AddRange(views.Select(r => new MenuModel { Menuid = i++, Icon = "icon-table", Menuname = r.Name, Url = $"/home/ShowTableInfo?datatableName={f.Name}&tableName={r.Name.Replace("#", "**")}&type=view&dbType={baseserver.CurrentDataBaseTypeEnum.GetHashCode()}" }).ToList());
+                            }
+                            resultMenu.Add(new MenuModel { Menuid = i++, Menuname = f.Name, Icon = "icon-database", Menus = childMenu });
                         }
-                        resultMenu.Add(new MenuModel { Menuid = i++, Menuname = f.Name, Icon = "icon-database", Menus = childMenu });
+                        catch(Exception ex)
+                        {
+                            ErrorInfoServer.Push(ex);
+                        }
                     });
                 }
             });

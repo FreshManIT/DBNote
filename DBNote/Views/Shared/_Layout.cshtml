@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.easyui.min.1.2.2.js"></script>
     <script type="text/javascript" src='../../js/outlook2.js'></script>
-    @RenderSection("css",false)
+    @RenderSection("css", false)
     <script type="text/javascript">
         var _menus = @Html.Raw(ViewBag.MenuJson);
         //设置登录窗口
@@ -62,6 +62,7 @@
 
             $('#editpass').click(function () {
                 $('#w').window('open');
+                $('#w').show();
             });
 
             $('#btnEp').click(function() {
@@ -83,7 +84,7 @@
         });
     </script>
 </head>
-<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+<body class="easyui-layout" style="overflow-y: scroll">
     <noscript>
         <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px; width: 100%; background: white; text-align: center;">
             <img src="../../images/noscript.gif" alt='抱歉，请开启脚本支持！' />
@@ -116,7 +117,7 @@
 
     <!--修改密码窗口-->
     <div id="w" class="easyui-window" title="修改密码" collapsible="false" minimizable="false" maximizable="false" icon="icon-save" style="width: 300px; height: 150px; padding: 5px;
-        background: #fafafa;">
+        background: #fafafa; display:none">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
                 <table cellpadding=3>
@@ -138,17 +139,19 @@
         </div>
     </div>
 
-    <div id="mm" class="easyui-menu" style="width:150px;">
-        <div id="mm-tabupdate">刷新</div>
-        <div class="menu-sep"></div>
-        <div id="mm-tabclose">关闭</div>
-        <div id="mm-tabcloseall">全部关闭</div>
-        <div id="mm-tabcloseother">除此之外全部关闭</div>
-        <div class="menu-sep"></div>
-        <div id="mm-tabcloseright">当前页右侧全部关闭</div>
-        <div id="mm-tabcloseleft">当前页左侧全部关闭</div>
-        <div class="menu-sep"></div>
-        <div id="mm-exit">退出</div>
+    <div style="display:none;">
+        <div id="mm" class="easyui-menu" style="width:150px;">
+            <div id="mm-tabupdate">刷新</div>
+            <div class="menu-sep"></div>
+            <div id="mm-tabclose">关闭</div>
+            <div id="mm-tabcloseall">全部关闭</div>
+            <div id="mm-tabcloseother">除此之外全部关闭</div>
+            <div class="menu-sep"></div>
+            <div id="mm-tabcloseright">当前页右侧全部关闭</div>
+            <div id="mm-tabcloseleft">当前页左侧全部关闭</div>
+            <div class="menu-sep"></div>
+            <div id="mm-exit">退出</div>
+        </div>
     </div>
 
     @RenderSection("scripts", required: false)
