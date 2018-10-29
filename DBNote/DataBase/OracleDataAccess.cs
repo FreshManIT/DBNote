@@ -26,9 +26,25 @@ namespace DBNote.DataBase
             if (connectionString.Contains("HOST"))
             {
                 int index = connectionString.IndexOf("HOST")+5;
-                connectionString = connectionString.Substring(index);
-                int first = connectionString.IndexOf(")");
-                host = connectionString.Substring(0, first);
+                if (index >-1)
+                {
+                    connectionString = connectionString.Substring(index);
+                    int first = connectionString.IndexOf(")");
+                    if (first > -1)
+                    {
+                        host = connectionString.Substring(0, first);
+                    }
+                }
+                index = connectionString.IndexOf("User ID") + 8;
+                if (index > -1)
+                {
+                    connectionString = connectionString.Substring(index);
+                    int first = connectionString.IndexOf(";");
+                    if (first > -1)
+                    {
+                        host += connectionString.Substring(0, first);
+                    }
+                }
             }
             var dataBaseList = new List<DataBaseModel>() { new DataBaseModel { Name = host } };
             return dataBaseList.ToList();

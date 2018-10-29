@@ -38,26 +38,44 @@ namespace DBNote.Server
 
             if ((dataBaseType & DataBaseTypeEnum.SqlServer) == DataBaseTypeEnum.SqlServer)
             {
-                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.SqlServer && f.IsEnable==IsEnableEnum.Enable);
-                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                var tempConfigList = config.Where(f => f.DbType == DataBaseTypeEnum.SqlServer && f.IsEnable == IsEnableEnum.Enable).ToList();
+                if (tempConfigList != null && tempConfigList.Count > 0)
                 {
-                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlServerDataAccess(), DataBaseTypeEnum.SqlServer));
+                    foreach (var tempConfig in tempConfigList)
+                    {
+                        if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                        {
+                            ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new SqlServerDataAccess(), DataBaseTypeEnum.SqlServer));
+                        }
+                    }
                 }
             }
             if ((dataBaseType & DataBaseTypeEnum.MySql) == DataBaseTypeEnum.MySql)
             {
-                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.MySql && f.IsEnable == IsEnableEnum.Enable);
-                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                var tempConfigList = config.Where(f => f.DbType == DataBaseTypeEnum.MySql && f.IsEnable == IsEnableEnum.Enable).ToList();
+                if (tempConfigList != null && tempConfigList.Count > 0)
                 {
-                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new MySqlDataAccess(), DataBaseTypeEnum.MySql));
+                    foreach (var tempConfig in tempConfigList)
+                    {
+                        if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                        {
+                            ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new MySqlDataAccess(), DataBaseTypeEnum.MySql));
+                        }
+                    }
                 }
             }
-            if((dataBaseType & DataBaseTypeEnum.Oracle) == DataBaseTypeEnum.Oracle)
+            if ((dataBaseType & DataBaseTypeEnum.Oracle) == DataBaseTypeEnum.Oracle)
             {
-                var tempConfig = config.FirstOrDefault(f => f.DbType == DataBaseTypeEnum.Oracle && f.IsEnable == IsEnableEnum.Enable);
-                if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                var tempConfigList = config.Where(f => f.DbType == DataBaseTypeEnum.Oracle && f.IsEnable == IsEnableEnum.Enable).ToList();
+                if (tempConfigList != null && tempConfigList.Count > 0)
                 {
-                    ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new OracleDataAccess(), DataBaseTypeEnum.Oracle));
+                    foreach (var tempConfig in tempConfigList)
+                    {
+                        if (!string.IsNullOrEmpty(tempConfig?.LinkConnectionString))
+                        {
+                            ServerList.Add(new BaseServer(tempConfig.LinkConnectionString, new OracleDataAccess(), DataBaseTypeEnum.Oracle));
+                        }
+                    }
                 }
             }
         }
